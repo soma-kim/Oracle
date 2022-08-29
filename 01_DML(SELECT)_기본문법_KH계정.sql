@@ -437,7 +437,7 @@ FROM EMPLOYEE;
     SELECT 조회하고자하는컬럼1, 컬럼2, ...
     FROM 테이블명
     WHERE 조건식 (생략 가능)
-    ORDER BY [정렬기준으로삼고자하는컬럼명/별칭/컬럼순번] [ASC/DESC](생략 가능) [NULLS FIRSR/NULLS LAST](생략가능);
+    ORDER BY [정렬기준으로삼고자하는컬럼명/별칭/컬럼순번] [ASC/DESC](생략 가능) [NULLS FIRST/NULLS LAST](생략가능);
     
     - ASC: 오름차순 정렬 => 작은 거에서부터 큰 거 순서대로 나열 (생략 시 기본값)
     - DESC: 내림차순 정렬 => 큰 거에서 작은 거 순서대로 나열
