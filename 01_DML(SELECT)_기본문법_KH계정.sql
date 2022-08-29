@@ -338,7 +338,7 @@ WHERE DEPT_TITLE LIKE '해외영업%';
     
     [ 표현법 ]
     비교대상컬럼명 IS NULL: 컬럼값이 NULL과 일치할 경우만 조회
-    비교대상컬럼명 IS NOT NULL: 컬럼값이 NULL과 일치할 경우만 조회
+    비교대상컬럼명 IS NOT NULL: 컬럼값이 NULL과 일치하 않을 경우만 조회
 */
 
 SELECT *
