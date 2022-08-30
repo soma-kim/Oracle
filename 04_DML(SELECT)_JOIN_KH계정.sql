@@ -104,7 +104,7 @@ FROM EMPLOYEE
 -- 사번, 사원명, 직급코드, 직급명 조회
 -- 2) 연결할 두 컬럼명이 같은 경우(EMPLOYEE 테이블의 JOB_CODE / JOB테이블의 JOB_CODE)
 -- => ON 구문, USING 구문 둘 다 사용 가능
--- 2_1) ON 구문 이용: AMBIGIFUOUSLY 오류가 발생할 수 있기 때문에 확실히 명시해야 함(테이블명, 별칭)
+-- 2_1) ON 구문 이용: AMBIGUOUSLY 오류가 발생할 수 있기 때문에 확실히 명시해야 함(테이블명, 별칭)
 SELECT EMP_ID, EMP_NAME, E.JOB_CODE, JOB_NAME
 FROM EMPLOYEE E
 JOIN JOB J ON (E. JOB_CODE = J.JOB_CODE);
