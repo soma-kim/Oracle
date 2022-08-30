@@ -15,7 +15,7 @@
                       오라클 전용구문                       |                           ANSI 구문
      ===================================================================                   
                            등가조인                            |         내부조인(INNER JOIN) -> JOIN USING / ON
-                       (EQUAL JOIN)                         |        외부조인(OUTER JOIN) -> 실제로 이렇게 쓰지는 않고 개념적인 내용
+                       (EQUAL JOIN)                         |    W    외부조인(OUTER JOIN) -> 실제로 이렇게 쓰지는 않고 개념적인 내용
                    
              => 연결고리 컬럼에 해당하는 값들이 "같은 것들만" 가지고 오겠다 (등가조인, "내부"조인)
              => 연결고리 컬럼에 해당하는 값들이 "일치하지 않아도" 가지고 오겠다 (등가조인, "외부"조인)
@@ -115,7 +115,7 @@ SELECT EMP_ID, EMP_NAME, JOB_CODE, JOB_NAME
 FROM EMPLOYEE
 JOIN JOB USING (JOB_CODE);
 
--- [참고] 위의 예시는 NATURAL JOIN (지연조인)으로도 가능
+-- [참고] 위의 예시는 NATURAL JOIN (자연조인)으로도 가능
 SELECT EMP_ID, EMP_NAME, JOB_CODE, JOB_NAME
 FROM EMPLOYEE
 NATURAL JOIN JOB;
