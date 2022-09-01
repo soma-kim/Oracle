@@ -1,4 +1,5 @@
-DROP TABLE TB_PUBLISHER; -- 반드시 해 줄 것~!
+DROP TABLE TB_PUBLISHER;
+DROP TABLE TB_BOOK;
 
 -- 실습 문제 --
 -- 도서관리 프로그램을 만들기 위한 테이블들 만들기 --
@@ -44,13 +45,57 @@ SELECT * FROM TB_PUBLISHER;
 --                                 이 때, 참조하고 있는 부모데이터 삭제 시 자식 데이터도 삭제 되도록 한다.
 
 CREATE TABLE TB_BOOK (
-    BK_NO NUMBER PRIMARY KEY,
+    BK_NO NUMBER CONSTRAINT BOOK_PK PRIMARY KEY,
     BK_TITLE VARCHAR2(30) CONSTRAINT BOOK_NN_TITLE NOT NULL,
-    BK_AUTHOR VARCHAR2(30) CONSTRAINT
+    BK_AUTHOR VARCHAR2(30) CONSTRAINT BOOK_NN_AUTHOR NOT NULL,
+    BK_PRICE NUMBER,
+    BK_PUB_NO NUMBER CONSTRAINT BOOK_FK REFERENCES TB_PUBLISHER (PUB_NO) ON DELETE CASCADE
+);
 
-        GRADE_ID CHAR(2) REFERENCES MEM_GRADE (GRADE_CODE), -- 컬럼레벨 방식
+SELECT * FROM TB_BOOK;
+
 -- 5개 정도의 샘플 데이터 추가하기
+INSERT INTO TB_BOOK
+VALUES (1
+            , 'ㄱ'
+            , 'ㄱ'
+            , 100
+            , 1
+);
 
+INSERT INTO TB_BOOK
+VALUES (2
+            , 'ㄴ'
+            , 'ㄴ'
+            , 200
+            , 2
+);
+
+INSERT INTO TB_BOOK
+VALUES (3
+            , 'ㄷ'
+            , 'ㄷ'
+            , 300
+            , 3
+);
+
+INSERT INTO TB_BOOK
+VALUES (4
+            , 'ㄹ'
+            , 'ㄹ'
+            , 400
+            , 1
+);
+
+INSERT INTO TB_BOOK
+VALUES (5
+            , 'ㅁ'
+            , 'ㅁ'
+            , 600
+            , 1
+);
+
+SELECT * FROM TB_BOOK;
 
 -- 3. 회원에 대한 데이터를 담기 위한 회원 테이블 (TB_MEMBER)
 -- 컬럼명 : MEMBER_NO (회원번호) -- 기본키 (MEMBER_PK)
@@ -62,6 +107,13 @@ CREATE TABLE TB_BOOK (
 --         PHONE (연락처)
 --         STATUS (탈퇴여부) -- 기본값으로 'N' 으로 지정, 그리고 'Y' 혹은 'N' 으로만 입력되도록 제약조건 (MEMBER_CK_ST)
 --         ENROLL_DATE (가입일) -- 기본값으로 SYSDATE, NOT NULL 제약조건 (MEMBER_NN_EN)
+
+CREATE TABLE TB_MEMBER
+    MEMBER_NO NUMBER CONSTRAINT MEMBER_PK PRIMARY KEY,
+    MEMBER_PWD VARCHAR2(20) CONSTRAINT MEMBER_UQ UNIQUE,
+    MEMBER_NAME VARCHAR2(20) CONSTRAINT 
+    
+
 
 -- 5개 정도의 샘플 데이터 추가하기
 
