@@ -1,181 +1,181 @@
 /*
     <DDL: DATA DEFINITION LANGUAGE>
-    µ¥ÀÌÅÍ Á¤ÀÇ ¾ð¾î
+    ë°ì´í„° ì •ì˜ ì–¸ì–´
     
-    °´Ã¼µéÀ» »õ·ÎÀÌ »ý¼º(CREATE), ¼öÁ¤(ALTER), »èÁ¦(DROP)ÇÏ´Â ±¸¹®
+    ê°ì²´ë“¤ì„ ìƒˆë¡œì´ ìƒì„±(CREATE), ìˆ˜ì •(ALTER), ì‚­ì œ(DROP)í•˜ëŠ” êµ¬ë¬¸
     
-    1. ALTER ±¸¹®
-    °´Ã¼ ±¸Á¶¸¦ ¼öÁ¤ÇÏ´Â ±¸¹®
+    1. ALTER êµ¬ë¬¸
+    ê°ì²´ êµ¬ì¡°ë¥¼ ìˆ˜ì •í•˜ëŠ” êµ¬ë¬¸
+     
+    <í…Œì´ë¸” ìˆ˜ì •>
+    ALTER TABLE í…Œì´ë¸”ëª… ìˆ˜ì •í• ë‚´ìš©;
     
-    <Å×ÀÌºí ¼öÁ¤>
-    ALTER TABLE Å×ÀÌºí¸í ¼öÁ¤ÇÒ³»¿ë;
-    
-    - ¼öÁ¤ÇÒ³»¿ë
-    1) ÄÃ·³ Ãß°¡ / ¼öÁ¤ / »èÁ¦
-    2) Á¦¾àÁ¶°Ç Ãß°¡ / »èÁ¦ => ¼öÁ¤Àº ºÒ°¡ (¼öÁ¤ÇÏ°íÀÚ ÇÑ´Ù¸é »èÁ¦ ÈÄ »õ·ÎÀÌ Ãß°¡)
-    3) Å×ÀÌºí¸í / ÄÃ·³¸í / Á¦¾àÁ¶°Ç¸í º¯°æ
+    - ìˆ˜ì •í• ë‚´ìš©
+    1) ì»¬ëŸ¼ ì¶”ê°€ / ìˆ˜ì • / ì‚­ì œ
+    2) ì œì•½ì¡°ê±´ ì¶”ê°€ / ì‚­ì œ => ìˆ˜ì •ì€ ë¶ˆê°€ (ìˆ˜ì •í•˜ê³ ìž í•œë‹¤ë©´ ì‚­ì œ í›„ ìƒˆë¡œì´ ì¶”ê°€)
+    3) í…Œì´ë¸”ëª… / ì»¬ëŸ¼ëª… / ì œì•½ì¡°ê±´ëª… ë³€ê²½
 */
 
--- 1) ÄÃ·³ Ãß°¡ / ¼öÁ¤ / »èÁ¦
--- 1_1) ÄÃ·³ Ãß°¡(ADD): ADD Ãß°¡ÇÒÄÃ·³¸í µ¥ÀÌÅÍÅ¸ÀÔ DEFAULT ±âº»°ª
---                              => DEFAULT ±âº»°ªÀº »ý·« °¡´É
+-- 1) ì»¬ëŸ¼ ì¶”ê°€ / ìˆ˜ì • / ì‚­ì œ
+-- 1_1) ì»¬ëŸ¼ ì¶”ê°€(ADD): ADD ì¶”ê°€í• ì»¬ëŸ¼ëª… ë°ì´í„°íƒ€ìž… DEFAULT ê¸°ë³¸ê°’
+--                              => DEFAULT ê¸°ë³¸ê°’ì€ ìƒëžµ ê°€ëŠ¥
 
 SELECT * FROM DEPT_COPY;
 
--- CNAME ÄÃ·³ Ãß°¡
+-- CNAME ì»¬ëŸ¼ ì¶”ê°€
 ALTER TABLE DEPT_COPY ADD CNAME VARCHAR2(20);
--- »õ·Î¿î ÄÃ·³ÀÌ ¸¸µé¾îÁö°í ±âº»ÀûÀ¸·Î NULL °ªÀ¸·Î Ã¤¿öÁü
+-- ìƒˆë¡œìš´ ì»¬ëŸ¼ì´ ë§Œë“¤ì–´ì§€ê³  ê¸°ë³¸ì ìœ¼ë¡œ NULL ê°’ìœ¼ë¡œ ì±„ì›Œì§
 
---LNAME ÄÃ·³ Ãß°¡ (DEFAULT ÁöÁ¤ÇØ¼­)
-ALTER TABLE DEPT_COPY ADD LNAME VARCHAR2(20) DEFAULT 'ÇÑ±¹';
--- »õ·Î¿î ÄÃ·³ÀÌ ¸¸µé¾îÁö°í NULLÀÌ ¾Æ´Ñ DEFAULT °ªÀ¸·Î Ã¤¿öÁü
+--LNAME ì»¬ëŸ¼ ì¶”ê°€ (DEFAULT ì§€ì •í•´ì„œ)
+ALTER TABLE DEPT_COPY ADD LNAME VARCHAR2(20) DEFAULT 'í•œêµ­';
+-- ìƒˆë¡œìš´ ì»¬ëŸ¼ì´ ë§Œë“¤ì–´ì§€ê³  NULLì´ ì•„ë‹Œ DEFAULT ê°’ìœ¼ë¡œ ì±„ì›Œì§
 
 SELECT * FROM DEPT_COPY;
 
--- 1_2) ÄÃ·³ ¼öÁ¤ (MODIFY)
--- µ¥ÀÌÅÍÅ¸ÀÔ ¼öÁ¤:  MODIFY ¼öÁ¤ÇÒÄÃ·³¸í ¹Ù²Ù°íÀÚÇÏ´Âµ¥ÀÌÅÍÅ¸ÀÔ
--- DEFAULT°ª ¼öÁ¤:  MODIFY ¼öÁ¤ÇÒÄÃ·³¸í DEFAULT ¹Ù²Ù°íÀÚÇÏ´Â±âº»°ª
+-- 1_2) ì»¬ëŸ¼ ìˆ˜ì • (MODIFY)
+-- ë°ì´í„°íƒ€ìž… ìˆ˜ì •:  MODIFY ìˆ˜ì •í• ì»¬ëŸ¼ëª… ë°”ê¾¸ê³ ìží•˜ëŠ”ë°ì´í„°íƒ€ìž…
+-- DEFAULTê°’ ìˆ˜ì •:  MODIFY ìˆ˜ì •í• ì»¬ëŸ¼ëª… DEFAULT ë°”ê¾¸ê³ ìží•˜ëŠ”ê¸°ë³¸ê°’
 
--- DEPT_ID ÄÃ·³ÀÇ µ¥ÀÌÅÍÅ¸ÀÔÀ» CHAR(3)À¸·Î º¯°æ
+-- DEPT_ID ì»¬ëŸ¼ì˜ ë°ì´í„°íƒ€ìž…ì„ CHAR(3)ìœ¼ë¡œ ë³€ê²½
 ALTER TABLE DEPT_COPY MODIFY DEPT_ID CHAR(3);
 
--- ÁÖÀÇ»çÇ×
--- ÇöÀç º¯°æÇÏ°íÀÚ ÇÏ´Â ÄÃ·³¿¡ ÀÌ¹Ì ´ã°Ü ÀÖ´Â °ª°ú ¿ÏÀüÈ÷ ´Ù¸¥ Å¸ÀÔÀ¸·Î´Â º¯°æ ºÒ°¡
--- ¿¹) ¹®ÀÚ -> ¼ýÀÚ (X) / ¹®ÀÚ¿­ »çÀÌÁî Ãà¼Ò (X) / ¹®ÀÚ¿­ »çÀÌÁî È®´ë (O)
+-- ì£¼ì˜ì‚¬í•­
+-- í˜„ìž¬ ë³€ê²½í•˜ê³ ìž í•˜ëŠ” ì»¬ëŸ¼ì— ì´ë¯¸ ë‹´ê²¨ ìžˆëŠ” ê°’ê³¼ ì™„ì „ížˆ ë‹¤ë¥¸ íƒ€ìž…ìœ¼ë¡œëŠ” ë³€ê²½ ë¶ˆê°€
+-- ì˜ˆ) ë¬¸ìž -> ìˆ«ìž (X) / ë¬¸ìžì—´ ì‚¬ì´ì¦ˆ ì¶•ì†Œ (X) / ë¬¸ìžì—´ ì‚¬ì´ì¦ˆ í™•ëŒ€ (O)
 
 ALTER TABLE DEPT_COPY MODIFY DEPT_ID NUMBER;
 -- ORA-01439: column to be modified must be empty to change datatype
--- ÀÌ¹Ì ¹®ÀÚÀÇ °ªÀÌ µé¾î ÀÖÀ¸¹Ç·Î ¼ýÀÚ ÀÚ·áÇüÀ¸·Î ¹Ù²Ü ¼ö ¾øÀ½
+-- ì´ë¯¸ ë¬¸ìžì˜ ê°’ì´ ë“¤ì–´ ìžˆìœ¼ë¯€ë¡œ ìˆ«ìž ìžë£Œí˜•ìœ¼ë¡œ ë°”ê¿€ ìˆ˜ ì—†ìŒ
 
 ALTER TABLE DEPT_COPY MODIFY DEPT_TITLE VARCHAR2(10);
 -- ORA-01441: cannot decrease column length because some value is too big
--- ÀÌ¹Ì 10BYTE ÀÌ»óÀÇ ¹®ÀÚ°ªÀÌ µé¾î ÀÖÀ¸¹Ç·Î ¹®ÀÚ °ªÀ» 10BYTE·Î Ãà¼Ò½ÃÅ³ ¼ö ¾øÀ½
+-- ì´ë¯¸ 10BYTE ì´ìƒì˜ ë¬¸ìžê°’ì´ ë“¤ì–´ ìžˆìœ¼ë¯€ë¡œ ë¬¸ìž ê°’ì„ 10BYTEë¡œ ì¶•ì†Œì‹œí‚¬ ìˆ˜ ì—†ìŒ
 
--- DEPT_TITLE ÄÃ·³ÀÇ µ¥ÀÌÅÍÅ¸ÀÔÀ» VARCHAR2(40)À¸·Î
---LOCATION_ID ÄÃ·³ÀÇ µ¥ÀÌÅÍÅ¸ÀÔÀÇ VARCHAR2(2)·Î
--- LNAME ÄÃ·³ÀÇ ±âº»°ªÀ» '¹Ì±¹'À¸·Î
+-- DEPT_TITLE ì»¬ëŸ¼ì˜ ë°ì´í„°íƒ€ìž…ì„ VARCHAR2(40)ìœ¼ë¡œ
+--LOCATION_ID ì»¬ëŸ¼ì˜ ë°ì´í„°íƒ€ìž…ì˜ VARCHAR2(2)ë¡œ
+-- LNAME ì»¬ëŸ¼ì˜ ê¸°ë³¸ê°’ì„ 'ë¯¸êµ­'ìœ¼ë¡œ
 ALTER TABLE DEPT_COPY MODIFY DEPT_TITLE VARCHAR2(40);
 ALTER TABLE DEPT_COPY MODIFY LOCATION_ID VARCHAR2(40);
---> ÀÌ·¸°Ô µû·Î ±â¼úÇØµµ ±¦Âú±ä ÇÏÁö¸¸
+--> ì´ë ‡ê²Œ ë”°ë¡œ ê¸°ìˆ í•´ë„ ê´œì°®ê¸´ í•˜ì§€ë§Œ
 
 ALTER TABLE DEPT_COPY
 MODIFY DEPT_TITLE VARCHAR2(40)
 MODIFY LOCATION_ID VARCHAR2(2)
-MODIFY LNAME DEFAULT '¹Ì±¹';
+MODIFY LNAME DEFAULT 'ë¯¸êµ­';
 
--- Å×½ºÆ®¿ë Å×ÀÌºí »ý¼º
+-- í…ŒìŠ¤íŠ¸ìš© í…Œì´ë¸” ìƒì„±
 CREATE TABLE DEPT_COPY2
 AS (SELECT *
      FROM DEPT_COPY);
      
 SELECT * FROM DEPT_COPY2;
 
--- 1_3) ÄÃ·³ »èÁ¦(DROP COLUMN): DROP COLUMN »èÁ¦ÇÏ°íÀÚ ÇÏ´Â ÄÃ·³¸í
+-- 1_3) ì»¬ëŸ¼ ì‚­ì œ(DROP COLUMN): DROP COLUMN ì‚­ì œí•˜ê³ ìž í•˜ëŠ” ì»¬ëŸ¼ëª…
 SELECT * FROM DEPT_COPY2;
 
--- DEPT_COPY2·ÎºÎÅÍ DEPT_ID ÄÃ·³ Áö¿ì±â
+-- DEPT_COPY2ë¡œë¶€í„° DEPT_ID ì»¬ëŸ¼ ì§€ìš°ê¸°
 ALTER TABLE DEPT_COPY2 DROP COLUMN DEPT_ID;
 
 ROLLBACK;
--- DDL ±¸¹®Àº º¹±¸ ºÒ°¡´É: DDL ±¸¹® ½ÇÇàÀº ¾ÖÃÊ¿¡ COMMITµµ Æ÷ÇÔµÈ °³³ä
+-- DDL êµ¬ë¬¸ì€ ë³µêµ¬ ë¶ˆê°€ëŠ¥: DDL êµ¬ë¬¸ ì‹¤í–‰ì€ ì• ì´ˆì— COMMITë„ í¬í•¨ëœ ê°œë…
 
-SELECT * FROM DEPT_COPY2; -- º¹±¸ ¾È µÊ
+SELECT * FROM DEPT_COPY2; -- ë³µêµ¬ ì•ˆ ë¨
 
--- ¸ðµç ÄÃ·³À» ¾ø¾Ö º¸ÀÚ
+-- ëª¨ë“  ì»¬ëŸ¼ì„ ì—†ì•  ë³´ìž
 ALTER TABLE DEPT_COPY2 DROP COLUMN DEPT_TITLE;
 ALTER TABLE DEPT_COPY2 DROP COLUMN LOCATION_ID;
 ALTER TABLE DEPT_COPY2 DROP COLUMN CNAME;
 ALTER TABLE DEPT_COPY2 DROP COLUMN LNAME;
 -- ORA-12983: cannot drop all columns in a table
---> Å×ÀÌºí¿¡ ÃÖ¼Ò 1°³ÀÇ ÄÃ·³Àº Á¸ÀçÇØ¾ß ÇÔ (¸¶Áö¸· ÄÃ·³ »èÁ¦¸¸ ¿À·ù)
+--> í…Œì´ë¸”ì— ìµœì†Œ 1ê°œì˜ ì»¬ëŸ¼ì€ ì¡´ìž¬í•´ì•¼ í•¨ (ë§ˆì§€ë§‰ ì»¬ëŸ¼ ì‚­ì œë§Œ ì˜¤ë¥˜)
 
--- 2) Á¦¾àÁ¶°Ç Ãß°¡/»èÁ¦
+-- 2) ì œì•½ì¡°ê±´ ì¶”ê°€/ì‚­ì œ
 
 /*
-    2_1) Á¦¾àÁ¶°Ç Ãß°¡
+    2_1) ì œì•½ì¡°ê±´ ì¶”ê°€
     
-    - PRIMARY KEY: ADD CONSTRAINT Á¦¾àÁ¶°Ç¸í PRIMARY KEY (ÄÃ·³¸í);
-    - FOREIGN KEY: ADD FOREIGN KEY (ÄÃ·³¸í) REFERENCES ÂüÁ¶ÇÒÅ×ÀÌºí¸í (ÂüÁ¶ÇÒÄÃ·³¸í);
-                          => ÂüÁ¶ÇÒÄÃ·³¸íÀº »ý·« °¡´É
-    - UNIQUE: ADD UNIQUE (ÄÃ·³¸í);
-    - CHECK: ADD CHECK(ÄÃ·³¿¡´ëÇÑÁ¶°Ç);
-    - NOT NULL: MODIFY ÄÃ·³¸í NOT NULL;
+    - PRIMARY KEY: ADD CONSTRAINT ì œì•½ì¡°ê±´ëª… PRIMARY KEY (ì»¬ëŸ¼ëª…);
+    - FOREIGN KEY: ADD FOREIGN KEY (ì»¬ëŸ¼ëª…) REFERENCES ì°¸ì¡°í• í…Œì´ë¸”ëª… (ì°¸ì¡°í• ì»¬ëŸ¼ëª…);
+                          => ì°¸ì¡°í• ì»¬ëŸ¼ëª…ì€ ìƒëžµ ê°€ëŠ¥
+    - UNIQUE: ADD UNIQUE (ì»¬ëŸ¼ëª…);
+    - CHECK: ADD CHECK(ì»¬ëŸ¼ì—ëŒ€í•œì¡°ê±´);
+    - NOT NULL: MODIFY ì»¬ëŸ¼ëª… NOT NULL;
     
-    ³ª¸¸ÀÇ Á¦¾àÁ¶°Ç¸í±îÁö ºÎ¿©ÇÏ°íÀÚ ÇÑ´Ù¸é CONSTRAINT Á¦¾àÁ¶°Ç¸í Á¦¾àÁ¶°Ç À» ¾´´Ù
-    "CONSTRAINT Á¦¾àÁ¶°Ç¸í" ºÎºÐÀº »ý·« °¡´É (»ý·« ½Ã Á¦¾àÁ¶°Ç¸íÀÌ SYS_C~~~·Î ÀâÈû)
-    * ÁÖÀÇ»çÇ×: ÇöÀç °èÁ¤ ³»¿¡ °íÀ¯ÇÑ °ªÀ¸·Î Á¦¾àÁ¶°Ç¸íÀ» ºÎ¿©ÇØ¾ß ÇÔ
+    ë‚˜ë§Œì˜ ì œì•½ì¡°ê±´ëª…ê¹Œì§€ ë¶€ì—¬í•˜ê³ ìž í•œë‹¤ë©´ CONSTRAINT ì œì•½ì¡°ê±´ëª… ì œì•½ì¡°ê±´ ì„ ì“´ë‹¤
+    "CONSTRAINT ì œì•½ì¡°ê±´ëª…" ë¶€ë¶„ì€ ìƒëžµ ê°€ëŠ¥ (ìƒëžµ ì‹œ ì œì•½ì¡°ê±´ëª…ì´ SYS_C~~~ë¡œ ìž¡íž˜)
+    * ì£¼ì˜ì‚¬í•­: í˜„ìž¬ ê³„ì • ë‚´ì— ê³ ìœ í•œ ê°’ìœ¼ë¡œ ì œì•½ì¡°ê±´ëª…ì„ ë¶€ì—¬í•´ì•¼ í•¨
 */
 
--- DEPT_COPY Å×ÀÌºí
--- DEPT_ID ÄÃ·³¿¡ PRIMARY Á¦¾àÁ¶°Ç Ãß°¡
--- DEPT_TITLE ÄÃ·³¿¡ UNIQUE Á¦¾àÁ¶°Ç Ãß°¡
--- LNAME ÄÃ·³¿¡ NOT NULL Á¦¾àÁ¶°Ç Ãß°¡
+-- DEPT_COPY í…Œì´ë¸”
+-- DEPT_ID ì»¬ëŸ¼ì— PRIMARY ì œì•½ì¡°ê±´ ì¶”ê°€
+-- DEPT_TITLE ì»¬ëŸ¼ì— UNIQUE ì œì•½ì¡°ê±´ ì¶”ê°€
+-- LNAME ì»¬ëŸ¼ì— NOT NULL ì œì•½ì¡°ê±´ ì¶”ê°€
 ALTER TABLE DEPT_COPY
 ADD CONSTRAINT DCOPY_PK PRIMARY KEY (DEPT_ID)
 ADD CONSTRAINT DCOPY_UQ UNIQUE (DEPT_TITLE)
 MODIFY LNAME CONSTRAINT DCOPY_NN NOT NULL;
 
--- ÁÖÀÇ»çÇ×: ÀÌ¹Ì µé¾î ÀÖ´Â °ª¿¡ ¸ÂÃç¼­ Á¦¾àÁ¶°ÇÀ» ºÎ¿©ÇØ¾ß ÇÔ 
+-- ì£¼ì˜ì‚¬í•­: ì´ë¯¸ ë“¤ì–´ ìžˆëŠ” ê°’ì— ë§žì¶°ì„œ ì œì•½ì¡°ê±´ì„ ë¶€ì—¬í•´ì•¼ í•¨ 
 
 /*
-    2_2) Á¦¾àÁ¶°Ç »èÁ¦
-    - PRIMARY KEY, FOREIGN KEY, UNIQUE, CHECK: DROP CONSTRAINT Á¦¾àÁ¶°Ç¸í
-    - NOT NULL: MODIFY ÄÃ·³¸í NULL
+    2_2) ì œì•½ì¡°ê±´ ì‚­ì œ
+    - PRIMARY KEY, FOREIGN KEY, UNIQUE, CHECK: DROP CONSTRAINT ì œì•½ì¡°ê±´ëª…
+    - NOT NULL: MODIFY ì»¬ëŸ¼ëª… NULL
 */
 
--- DCOPY_PK Á¦¾àÁ¶°Ç Áö¿ì±â
+-- DCOPY_PK ì œì•½ì¡°ê±´ ì§€ìš°ê¸°
 ALTER TABLE DEPT_COPY DROP CONSTRAINT DCOPY_PK;
 
--- DCOPY_UQ, LNAME ÄÃ·³ÀÇ NOT NULL Á¦¾àÁ¶°Ç Áö¿ì±â
+-- DCOPY_UQ, LNAME ì»¬ëŸ¼ì˜ NOT NULL ì œì•½ì¡°ê±´ ì§€ìš°ê¸°
 ALTER TABLE DEPT_COPY
 DROP CONSTRAINT DCOPY_UQ
 MODIFY LNAME NULL;
 
--- 3) ÄÃ·³¸í / Á¦¾àÁ¶°Ç¸í / Å×ÀÌºí¸í º¯°æ (RENAME)
+-- 3) ì»¬ëŸ¼ëª… / ì œì•½ì¡°ê±´ëª… / í…Œì´ë¸”ëª… ë³€ê²½ (RENAME)
 
--- 3_1) ÄÃ·³¸í º¯°æ: RENAME COLUMN ±âÁ¸ÄÃ·³¸í TO ¹Ù²ÜÄÃ·³¸í
+-- 3_1) ì»¬ëŸ¼ëª… ë³€ê²½: RENAME COLUMN ê¸°ì¡´ì»¬ëŸ¼ëª… TO ë°”ê¿€ì»¬ëŸ¼ëª…
 ALTER TABLE DEPT_COPY RENAME COLUMN DEPT_TITLE TO DEPT_NAME;
 
--- 3_2) Á¦¾àÁ¶°Ç¸í º¯°æ: RENAME CONSTRAINT ±âÁ¸Á¦¾àÁ¶°Ç¸í TO ¹Ù²ÜÁ¦¾àÁ¶°Ç¸í
+-- 3_2) ì œì•½ì¡°ê±´ëª… ë³€ê²½: RENAME CONSTRAINT ê¸°ì¡´ì œì•½ì¡°ê±´ëª… TO ë°”ê¿€ì œì•½ì¡°ê±´ëª…
 ALTER TABLE DEPT_COPY RENAME CONSTRAINT SYS_C007131 TO DCOPY_LID_NN;
 
--- 3_3) Å×ÀÌºí¸í º¯°æ: RENAME TO ¹Ù²ÜÅ×ÀÌºí¸í
---                            => ±âÁ¸Å×ÀÌºí¸íÀº ÀÌ¹Ì ALTER TABLE Å×ÀÌºí¸í¿¡¼­ ÀÌ¹Ì ±â¼úµÇ¾ú±â ¶§¹®¿¡ ¹®¹ýÀ» À§¿Í °°ÀÌ ¾¸
+-- 3_3) í…Œì´ë¸”ëª… ë³€ê²½: RENAME TO ë°”ê¿€í…Œì´ë¸”ëª…
+--                            => ê¸°ì¡´í…Œì´ë¸”ëª…ì€ ì´ë¯¸ ALTER TABLE í…Œì´ë¸”ëª…ì—ì„œ ì´ë¯¸ ê¸°ìˆ ë˜ì—ˆê¸° ë•Œë¬¸ì— ë¬¸ë²•ì„ ìœ„ì™€ ê°™ì´ ì”€
 ALTER TABLE DEPT_COPY RENAME TO DEPT_TEST;
 
 SELECT * FROM DEPT_COPY;
 -- ORA-00942: table or view does not exist
--- => ÀÌÁ¦ ´õ ÀÌ»ó DEPT_COPY¶ó´Â ÀÌ¸§ÀÇ Å×ÀÌºíÀÌ Á¸ÀçÇÏÁö ¾ÊÀ½
+-- => ì´ì œ ë” ì´ìƒ DEPT_COPYë¼ëŠ” ì´ë¦„ì˜ í…Œì´ë¸”ì´ ì¡´ìž¬í•˜ì§€ ì•ŠìŒ
 
 SELECT * FROM DEPT_TEST;
 
--->> ¾ÖÃÊ¿¡ CREATE TABLE ±¸¹®À¸·Î ½ÇÇàÇØ¼­ Å×ÀÌºíÀ» ¸¸µé±â ÀÌÀü¿¡
---     ²Ä²ÄÈ÷ ¼³°è¸¦ ÇØ¼­ Å×ÀÌºíÀÌ ´Ù ¸¸µé¾îÁö°í, µ¥ÀÌÅÍ°¡ ´Ù µé¾î°£ ÀÌÈÄ¿¡ µÇµµ·ÏÀÌ¸é ALTER ±¸¹®À» ¾²´Â °ÍÀ» Áö¾çÇØ¾ß ÇÔ
+-->> ì• ì´ˆì— CREATE TABLE êµ¬ë¬¸ìœ¼ë¡œ ì‹¤í–‰í•´ì„œ í…Œì´ë¸”ì„ ë§Œë“¤ê¸° ì´ì „ì—
+--     ê¼¼ê¼¼ížˆ ì„¤ê³„ë¥¼ í•´ì„œ í…Œì´ë¸”ì´ ë‹¤ ë§Œë“¤ì–´ì§€ê³ , ë°ì´í„°ê°€ ë‹¤ ë“¤ì–´ê°„ ì´í›„ì— ë˜ë„ë¡ì´ë©´ ALTER êµ¬ë¬¸ì„ ì“°ëŠ” ê²ƒì„ ì§€ì–‘í•´ì•¼ í•¨
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 /*
     2. DROP
-    °´Ã¼¸¦ »èÁ¦ÇÏ´Â ±¸¹®
+    ê°ì²´ë¥¼ ì‚­ì œí•˜ëŠ” êµ¬ë¬¸
     
-    °èÁ¤ »èÁ¦ ½Ã: DROP USER °èÁ¤¸í;
-    Å×ÀÌºí »èÁ¦ ½Ã: DROP TABLE Å×ÀÌºí¸í;
+    ê³„ì • ì‚­ì œ ì‹œ: DROP USER ê³„ì •ëª…;
+    í…Œì´ë¸” ì‚­ì œ ì‹œ: DROP TABLE í…Œì´ë¸”ëª…;
 */
 
--- DEPT_TEST Å×ÀÌºí »èÁ¦
+-- DEPT_TEST í…Œì´ë¸” ì‚­ì œ
 DROP TABLE DEPT_TEST;
 
--- DEPARTMENT Å×ÀÌºí »èÁ¦ ½Ãµµ
+-- DEPARTMENT í…Œì´ë¸” ì‚­ì œ ì‹œë„
 DROP TABLE DEPARTMENT;
 -- ORA-02449: unique/primary keys in table referenced by foreign keys
--- => Å×ÀÌºí »èÁ¦ ½Ã, ¾îµò°¡¿¡¼­ ÂüÁ¶µÇ°í ÀÖ´Â ºÎ¸ð Å×ÀÌºíµéÀº »èÁ¦µÇÁö ¾ÊÀ½
+-- => í…Œì´ë¸” ì‚­ì œ ì‹œ, ì–´ë”˜ê°€ì—ì„œ ì°¸ì¡°ë˜ê³  ìžˆëŠ” ë¶€ëª¨ í…Œì´ë¸”ë“¤ì€ ì‚­ì œë˜ì§€ ì•ŠìŒ
 
--- ¸¸¾à¿¡ ºÎ¸ð Å×ÀÌºíÀ» »èÁ¦ÇÏ°í ½Í´Ù¸é?
--- 1) ÀÚ½Ä Å×ÀÌºíÀ» ¸ÕÀú »èÁ¦ ÈÄ ºÎ¸ð Å×ÀÌºíÀ» »èÁ¦ÇÏ´Â ¹æ¹ý
-DROP TABLE ÀÚ½ÄÅ×ÀÌºí¸í; -- ¸ÕÀú ½ÇÇà ÈÄ
-DROP TABLE ºÎ¸ðÅ×ÀÌºí¸í; -- ÀÛ¼ºÇÏ¸é µÊ!
+-- ë§Œì•½ì— ë¶€ëª¨ í…Œì´ë¸”ì„ ì‚­ì œí•˜ê³  ì‹¶ë‹¤ë©´?
+-- 1) ìžì‹ í…Œì´ë¸”ì„ ë¨¼ì € ì‚­ì œ í›„ ë¶€ëª¨ í…Œì´ë¸”ì„ ì‚­ì œí•˜ëŠ” ë°©ë²•
+DROP TABLE ìžì‹í…Œì´ë¸”ëª…; -- ë¨¼ì € ì‹¤í–‰ í›„
+DROP TABLE ë¶€ëª¨í…Œì´ë¸”ëª…; -- ìž‘ì„±í•˜ë©´ ë¨!
 
--- 2) ºÎ¸ðÅ×ÀÌºí¸¸ »èÁ¦ÇÏ´Âµ¥ ¸Â¹°·Á ÀÖ´Â ¿Ü·¡Å° Á¦¾àÁ¶°ÇÀ» ÇÔ²² »èÁ¦ÇÏ´Â ¹æ¹ý
-DROP TABLE ºÎ¸ðÅ×ÀÌºí¸í CASCADE CONSTRAINT;
+-- 2) ë¶€ëª¨í…Œì´ë¸”ë§Œ ì‚­ì œí•˜ëŠ”ë° ë§žë¬¼ë ¤ ìžˆëŠ” ì™¸ëž˜í‚¤ ì œì•½ì¡°ê±´ì„ í•¨ê»˜ ì‚­ì œí•˜ëŠ” ë°©ë²•
+DROP TABLE ë¶€ëª¨í…Œì´ë¸”ëª… CASCADE CONSTRAINT;
 
---> DROP ±¸¹®Àº ½ÇÁúÀûÀ¸·Î ¿î¿µ ½Ã¿¡ ¾²ÀÎ´Ù±âº¸´Ù
---   CREATE ±¸¹® Àü¿¡ Áßº¹µÈ ÀÌ¸§ÀÇ °´Ã¼°¡ ÀÌ¹Ì ÀÖÀ» °Í¿¡ ´ëºñÇØ¼­ »èÁ¦ÇÏ´Â µ¥ ÁÖ·Î  ¾²ÀÓ
+--> DROP êµ¬ë¬¸ì€ ì‹¤ì§ˆì ìœ¼ë¡œ ìš´ì˜ ì‹œì— ì“°ì¸ë‹¤ê¸°ë³´ë‹¤
+--   CREATE êµ¬ë¬¸ ì „ì— ì¤‘ë³µëœ ì´ë¦„ì˜ ê°ì²´ê°€ ì´ë¯¸ ìžˆì„ ê²ƒì— ëŒ€ë¹„í•´ì„œ ì‚­ì œí•˜ëŠ” ë° ì£¼ë¡œ  ì“°ìž„
