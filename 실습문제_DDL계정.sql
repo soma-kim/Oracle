@@ -2,7 +2,7 @@ DROP TABLE TB_PUBLISHER;
 DROP TABLE TB_BOOK;
 DROP TABLE TB_MEMBER;
 DROP TABLE TB_RENT;
-
+ 
 -- 실습 문제 --
 -- 도서관리 프로그램을 만들기 위한 테이블들 만들기 --
 -- 이때, 제약조건에 이름을 부여할것
