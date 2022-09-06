@@ -1,82 +1,82 @@
 /*
     <DCL: DATA CONTROL LANGUAGE>
-    µ¥ÀÌÅÍ Á¦¾î ¾ð¾î
+    ë°ì´í„° ì œì–´ ì–¸ì–´
     
-    °èÁ¤¿¡°Ô ½Ã½ºÅÛ ±ÇÇÑ ¶Ç´Â °´Ã¼ Á¢±Ù ±ÇÇÑÀ» ºÎ¿©(GRANT) ÇÏ°Å³ª È¸¼ö(REVOKE) ÇÏ´Â ¾ð¾î
+    ê³„ì •ì—ê²Œ ì‹œìŠ¤í…œ ê¶Œí•œ ë˜ëŠ” ê°ì²´ ì ‘ê·¼ ê¶Œí•œì„ ë¶€ì—¬(GRANT) í•˜ê±°ë‚˜ íšŒìˆ˜(REVOKE) í•˜ëŠ” ì–¸ì–´
+     
+    *ê¶Œí•œ ë¶€ì—¬(GRANT)
+    - ì‹œìŠ¤í…œ ê¶Œí•œ: íŠ¹ì • DBì— ì ‘ê·¼í•˜ëŠ” ê¶Œí•œ, ê°ì²´ë“¤ì„ ìƒì„±í•  ìˆ˜ ìžˆëŠ” ê¶Œí•œ
+    - ê°ì²´ ì ‘ê·¼ ê¶Œí•œ: íŠ¹ì • ê°ì²´ë“¤ì— ì ‘ê·¼í•´ì„œ ì¡°ìž‘í•  ìˆ˜ ìžˆëŠ” ê¶Œí•œ
     
-    *±ÇÇÑ ºÎ¿©(GRANT)
-    - ½Ã½ºÅÛ ±ÇÇÑ: Æ¯Á¤ DB¿¡ Á¢±ÙÇÏ´Â ±ÇÇÑ, °´Ã¼µéÀ» »ý¼ºÇÒ ¼ö ÀÖ´Â ±ÇÇÑ
-    - °´Ã¼ Á¢±Ù ±ÇÇÑ: Æ¯Á¤ °´Ã¼µé¿¡ Á¢±ÙÇØ¼­ Á¶ÀÛÇÒ ¼ö ÀÖ´Â ±ÇÇÑ
+    1. ì‹œìŠ¤í…œ ê¶Œí•œ
+    íŠ¹ì • DBì— ì ‘ê·¼í•˜ëŠ” ê¶Œí•œ, ê°ì²´ë“¤ì„ ìƒì„±í•  ìˆ˜ ìžˆëŠ” ê¶Œí•œ
     
-    1. ½Ã½ºÅÛ ±ÇÇÑ
-    Æ¯Á¤ DB¿¡ Á¢±ÙÇÏ´Â ±ÇÇÑ, °´Ã¼µéÀ» »ý¼ºÇÒ ¼ö ÀÖ´Â ±ÇÇÑ
+    [ í‘œí˜„ë²• ]
+    GRANT ê¶Œí•œ1, ê¶Œí•œ2, ..., TO ê³„ì •ëª…;
     
-    [ Ç¥Çö¹ý ]
-    GRANT ±ÇÇÑ1, ±ÇÇÑ2, ..., TO °èÁ¤¸í;
-    
-    - ½Ã½ºÅÛ ±ÇÇÑÀÇ Á¾·ù
-    CREATE SESSION: °èÁ¤¿¡ Á¢¼ÓÇÒ ¼ö ÀÖ´Â ±ÇÇÑ
-    CREATE TABLE: Å×ÀÌºíÀ» »ý¼ºÇÒ ¼ö ÀÖ´Â ±ÇÇÑ
-    CREATE VIEW: ºä¸¦ »ý¼ºÇÒ ¼ö ÀÖ´Â ±ÇÇÑ
-    CREATE SEQUENCE: ½ÃÄö½º¸¦ »ý¼ºÇÒ ¼ö ÀÖ´Â ±ÇÇÑ
-    CREATE USER: °èÁ¤À» »ý¼ºÇÒ ¼ö ÀÖ´Â ±ÇÇÑ
+    - ì‹œìŠ¤í…œ ê¶Œí•œì˜ ì¢…ë¥˜
+    CREATE SESSION: ê³„ì •ì— ì ‘ì†í•  ìˆ˜ ìžˆëŠ” ê¶Œí•œ
+    CREATE TABLE: í…Œì´ë¸”ì„ ìƒì„±í•  ìˆ˜ ìžˆëŠ” ê¶Œí•œ
+    CREATE VIEW: ë·°ë¥¼ ìƒì„±í•  ìˆ˜ ìžˆëŠ” ê¶Œí•œ
+    CREATE SEQUENCE: ì‹œí€€ìŠ¤ë¥¼ ìƒì„±í•  ìˆ˜ ìžˆëŠ” ê¶Œí•œ
+    CREATE USER: ê³„ì •ì„ ìƒì„±í•  ìˆ˜ ìžˆëŠ” ê¶Œí•œ
     ...
 */
 
--- 1. SAMPLE °èÁ¤ »ý¼º
+-- 1. SAMPLE ê³„ì • ìƒì„±
 CREATE USER SAMPLE IDENTIFIED BY SAMPLE;
 
--- 2. SAMPLE °èÁ¤¿¡ Á¢¼ÓÇÏ±â À§ÇÑ CREATE SESSION ±ÇÇÑ¸¸ ºÎ¿©
+-- 2. SAMPLE ê³„ì •ì— ì ‘ì†í•˜ê¸° ìœ„í•œ CREATE SESSION ê¶Œí•œë§Œ ë¶€ì—¬
 GRANT CREATE SESSION TO SAMPLE;
 
--- 3_1. SAMPLE °èÁ¤¿¡ Å×ÀÌºíÀ» »ý¼ºÇÒ ¼ö ÀÖ´Â CREATE TABLE ±ÇÇÑ ºÎ¿©
+-- 3_1. SAMPLE ê³„ì •ì— í…Œì´ë¸”ì„ ìƒì„±í•  ìˆ˜ ìžˆëŠ” CREATE TABLE ê¶Œí•œ ë¶€ì—¬
 GRANT CREATE TABLE TO SAMPLE;
 
--- 3_2. SAMPLE °èÁ¤¿¡ Å×ÀÌºí½ºÆäÀÌ½º¸¦ ÇÒ´çÇØ ÁÖ±â (ALTER ±¸¹®À¸·Î)
+-- 3_2. SAMPLE ê³„ì •ì— í…Œì´ë¸”ìŠ¤íŽ˜ì´ìŠ¤ë¥¼ í• ë‹¹í•´ ì£¼ê¸° (ALTER êµ¬ë¬¸ìœ¼ë¡œ)
 ALTER USER SAMPLE QUOTA 2M ON SYSTEM;
--- QUOTA: ¸ò, ÇÒ´çÇÏ´Ù
+-- QUOTA: ëª«, í• ë‹¹í•˜ë‹¤
 -- 2M: 2 MEGA BATE
--- SYSTEM: ¿À¶óÅ¬¿¡¼­ Á¦°øÇÏ´Â ±âº» Å×ÀÌºí½ºÆäÀÌ½º¸í
+-- SYSTEM: ì˜¤ë¼í´ì—ì„œ ì œê³µí•˜ëŠ” ê¸°ë³¸ í…Œì´ë¸”ìŠ¤íŽ˜ì´ìŠ¤ëª…
 
--- 4. SAMPLE °èÁ¤¿¡ ºä¸¦ »ý¼ºÇÒ ¼ö ÀÖ´Â CREATE VIEW ±ÇÇÑ ºÎ¿©
+-- 4. SAMPLE ê³„ì •ì— ë·°ë¥¼ ìƒì„±í•  ìˆ˜ ìžˆëŠ” CREATE VIEW ê¶Œí•œ ë¶€ì—¬
 GRANT CREATE VIEW TO SAMPLE;
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 /*
-    *°´Ã¼ Á¢±Ù ±ÇÇÑ (°´Ã¼ ±ÇÇÑ)
-    Æ¯Á¤ °´Ã¼µéÀ» Á¶ÀÛ(SELECT, INSERT, UPDATE, DALETE) ÇÒ ¼ö ÀÖ´Â ±ÇÇÑ
+    *ê°ì²´ ì ‘ê·¼ ê¶Œí•œ (ê°ì²´ ê¶Œí•œ)
+    íŠ¹ì • ê°ì²´ë“¤ì„ ì¡°ìž‘(SELECT, INSERT, UPDATE, DALETE) í•  ìˆ˜ ìžˆëŠ” ê¶Œí•œ
     
-    [ Ç¥Çö¹ý ]
-    GRANT ±ÇÇÑÁ¾·ù ON Æ¯Á¤°´Ã¼ TO °èÁ¤¸í;
+    [ í‘œí˜„ë²• ]
+    GRANT ê¶Œí•œì¢…ë¥˜ ON íŠ¹ì •ê°ì²´ TO ê³„ì •ëª…;
     
-              ±ÇÇÑ Á¾·ù                      |                         Æ¯Á¤ °´Ã¼
+              ê¶Œí•œ ì¢…ë¥˜                      |                         íŠ¹ì • ê°ì²´
  ------------------------------------------------------------------------------------------------
                SELECT                        |    TABLE, VIEW, SEQUENCE
                INSERT                        |    TABLE, VIEW
-              UPDATE                        |    TABLE, VIEW(¾È µÇ´Â°æ¿ì°¡ ´õ ¸¹Áö¸¸ µÇ±â´Â µÊ)
-               DELETE                        |    TABLE, VIEW(¾È µÇ´Â°æ¿ì°¡ ´õ ¸¹Áö¸¸ µÇ±â´Â µÊ)
+              UPDATE                        |    TABLE, VIEW(ì•ˆ ë˜ëŠ”ê²½ìš°ê°€ ë” ë§Žì§€ë§Œ ë˜ê¸°ëŠ” ë¨)
+               DELETE                        |    TABLE, VIEW(ì•ˆ ë˜ëŠ”ê²½ìš°ê°€ ë” ë§Žì§€ë§Œ ë˜ê¸°ëŠ” ë¨)
 */
 
--- 5. SAMPLE °èÁ¤¿¡ KH.EMPLOYEE Å×ÀÌºíÀ» Á¶È¸ÇÒ ¼ö ÀÖ´Â ±ÇÇÑ ºÎ¿©
+-- 5. SAMPLE ê³„ì •ì— KH.EMPLOYEE í…Œì´ë¸”ì„ ì¡°íšŒí•  ìˆ˜ ìžˆëŠ” ê¶Œí•œ ë¶€ì—¬
 GRANT SELECT ON KH.EMPLOYEE TO SAMPLE;
 
--- 6. SAMPLE °èÁ¤¿¡ KH.DEPARTMENT Å×ÀÌºí¿¡ ÇàÀ» »ðÀÔÇÒ ¼ö ÀÖ´Â ±ÇÇÑ ºÎ¿©
+-- 6. SAMPLE ê³„ì •ì— KH.DEPARTMENT í…Œì´ë¸”ì— í–‰ì„ ì‚½ìž…í•  ìˆ˜ ìžˆëŠ” ê¶Œí•œ ë¶€ì—¬
 GRANT INSERT ON KH.DEPARTMENT TO SAMPLE;
 
 --------------------------------------------------------------------------------------------------------------------------------------------
--- ÃÖ¼ÒÇÑÀÇ ±ÇÇÑÀ» ºÎ¿©ÇÏ°íÀÚ ÇÒ ¶§ CONNECT, RESOURCE¸¸ ºÎ¿©
--- GRANT CONNECT, RESOURCE TO °èÁ¤¸í;
+-- ìµœì†Œí•œì˜ ê¶Œí•œì„ ë¶€ì—¬í•˜ê³ ìž í•  ë•Œ CONNECT, RESOURCEë§Œ ë¶€ì—¬
+-- GRANT CONNECT, RESOURCE TO ê³„ì •ëª…;
 
 /*
-    <·Ñ ROLE>
-    Æ¯Á¤ ±ÇÇÑµéÀ» ÇÏ³ªÀÇ ÁýÇÕÀ¸·Î ¹­¾î ³õÀº °Í
+    <ë¡¤ ROLE>
+    íŠ¹ì • ê¶Œí•œë“¤ì„ í•˜ë‚˜ì˜ ì§‘í•©ìœ¼ë¡œ ë¬¶ì–´ ë†“ì€ ê²ƒ
     
-    CONNECT: CREATE SESSION (µ¥ÀÌÅÍº£ÀÌ½º¿¡ Á¢¼ÓÇÒ ¼ö ÀÖ´Â ±ÇÇÑ)
-    RESOURCE: CREATE TABLE, CREATE SEQUENCE, ... (Æ¯Á¤ °´Ã¼µéÀ» »ý¼º ¹× °ü¸®ÇÒ ¼ö ÀÖ´Â ±ÇÇÑ)
+    CONNECT: CREATE SESSION (ë°ì´í„°ë² ì´ìŠ¤ì— ì ‘ì†í•  ìˆ˜ ìžˆëŠ” ê¶Œí•œ)
+    RESOURCE: CREATE TABLE, CREATE SEQUENCE, ... (íŠ¹ì • ê°ì²´ë“¤ì„ ìƒì„± ë° ê´€ë¦¬í•  ìˆ˜ ìžˆëŠ” ê¶Œí•œ)
 */
 
--- µ¥ÀÌÅÍ µñ¼Å³Ê¸®¸¦ ÀÌ¿ëÇÏ¿©
--- CONNECT, RESOURCE¶ó´Â ·Ñ¿¡ ¾î¶² ±ÇÇÑµéÀÌ ¹­¿© ÀÖ´ÂÁö È®ÀÎÇØ º¸±â
+-- ë°ì´í„° ë”•ì…”ë„ˆë¦¬ë¥¼ ì´ìš©í•˜ì—¬
+-- CONNECT, RESOURCEë¼ëŠ” ë¡¤ì— ì–´ë–¤ ê¶Œí•œë“¤ì´ ë¬¶ì—¬ ìžˆëŠ”ì§€ í™•ì¸í•´ ë³´ê¸°
 SELECT *
 FROM ROLE_SYS_PRIVS
 -- WHERE ROLE = 'CONNECT' OR ROLE = 'RESOURCE';
@@ -85,28 +85,28 @@ WHERE ROLE IN ('CONNECT', 'RESOURCE');
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 /*
-    *±ÇÇÑ È¸¼ö (REVOKE)
-    ±ÇÇÑÀ» È¸¼öÇÒ ¶§ »ç¿ëÇÏ´Â ¸í·É¾î
+    *ê¶Œí•œ íšŒìˆ˜ (REVOKE)
+    ê¶Œí•œì„ íšŒìˆ˜í•  ë•Œ ì‚¬ìš©í•˜ëŠ” ëª…ë ¹ì–´
     
-    [ Ç¥Çö¹ý ]
-    REVOKE ±ÇÇÑ1, ±ÇÇÑ2, ±ÇÇÑ3, ... FROM °èÁ¤¸í;
+    [ í‘œí˜„ë²• ]
+    REVOKE ê¶Œí•œ1, ê¶Œí•œ2, ê¶Œí•œ3, ... FROM ê³„ì •ëª…;
 */
 
--- 7. SAMPLE °èÁ¤¿¡¼­ Å×ÀÌºíÀ» »ý¼ºÇÒ ¼ö ¾øµµ·Ï ±ÇÇÑ È¸¼ö
+-- 7. SAMPLE ê³„ì •ì—ì„œ í…Œì´ë¸”ì„ ìƒì„±í•  ìˆ˜ ì—†ë„ë¡ ê¶Œí•œ íšŒìˆ˜
 REVOKE CREATE TABLE FROM SAMPLE;
 
------ ½Ç½À ¹®Á¦ -----
--- »ç¿ëÀÚ °èÁ¤: MYTEST / MYTEST
+----- ì‹¤ìŠµ ë¬¸ì œ -----
+-- ì‚¬ìš©ìž ê³„ì •: MYTEST / MYTEST
 CREATE USER MYTEST IDENTIFIED BY MYTEST;
 
--- »ç¿ëÀÚ¿¡°Ô ºÎ¿©ÇÒ ±ÇÇÑ: CONNECT, RESOURCE, CREATE VIEW
+-- ì‚¬ìš©ìžì—ê²Œ ë¶€ì—¬í•  ê¶Œí•œ: CONNECT, RESOURCE, CREATE VIEW
 GRANT CONNECT, RESOURCE, CREATE VIEW TO MYTEST;
 
--- º¼ ÀÏ º¸°í(Á¢¼Ó, Å×ÀÌºí »ý¼º, ºä »ý¼º)
+-- ë³¼ ì¼ ë³´ê³ (ì ‘ì†, í…Œì´ë¸” ìƒì„±, ë·° ìƒì„±)
 
--- »ç¿ëÀÚ·ÎºÎÅÍ ±ÇÇÑÀ» ¸ðµÎ È¸¼ö
+-- ì‚¬ìš©ìžë¡œë¶€í„° ê¶Œí•œì„ ëª¨ë‘ íšŒìˆ˜
 REVOKE CONNECT, RESOURCE, CREATE VIEW FROM MYTEST;
 
--- »ç¿ëÀÚ °èÁ¤ »èÁ¦
+-- ì‚¬ìš©ìž ê³„ì • ì‚­ì œ
 DROP USER MYTEST CASCADE;
--- °èÁ¤¿¡ ÀÚ·á°¡ ÀÖ±â ¶§¹®¿¡ ±×³É »èÁ¦°¡ ¾È µÊ! CASCADE·Î Á¾¼ÓµÈ ¸ðµç °ÍÀ» »èÁ¦ÇÏ°Ú´Ù°í ÇØ Áà¾ß ÇÔ!
+-- ê³„ì •ì— ìžë£Œê°€ ìžˆê¸° ë•Œë¬¸ì— ê·¸ëƒ¥ ì‚­ì œê°€ ì•ˆ ë¨! CASCADEë¡œ ì¢…ì†ëœ ëª¨ë“  ê²ƒì„ ì‚­ì œí•˜ê² ë‹¤ê³  í•´ ì¤˜ì•¼ í•¨!
