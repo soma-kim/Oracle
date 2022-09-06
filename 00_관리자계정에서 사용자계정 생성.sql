@@ -1,18 +1,16 @@
--- ÇÑÁÙÂ¥¸® ÁÖ¼®
+-- í•œì¤„ì§œë¦¬ ì£¼ì„
 
 /*
-    ¿©·¯ÁÙ
-    Â¥¸®
-    ÁÖ¼®
+    ì—¬ëŸ¬ì¤„
+    ì§œë¦¬
+    ì£¼ì„
 */
 
--- ÀÏ¹Ý »ç¿ëÀÚ °èÁ¤À» ¸¸µé ¼ö ÀÖ´Â ±ÇÇÑÀº °ü¸®ÀÚ °èÁ¤¿¡ ÀÖÀ½
--- »ç¿ëÀÚ °èÁ¤À» »ý¼ºÇÏ´Â ¹æ¹ý
--- [ Ç¥Çö¹ý ] CREATE USER °èÁ¤¸í IDENTIFIED BY ºñ¹Ð¹øÈ£;
+-- ì¼ë°˜ ì‚¬ìš©ìž ê³„ì •ì„ ë§Œë“¤ ìˆ˜ ìžˆëŠ” ê¶Œí•œì€ ê´€ë¦¬ìž ê³„ì •ì— ìžˆìŒ
+-- ì‚¬ìš©ìž ê³„ì •ì„ ìƒì„±í•˜ëŠ” ë°©ë²•
+-- [ í‘œí˜„ë²• ] CREATE USER ê³„ì •ëª… IDENTIFIED BY ë¹„ë°€ë²ˆí˜¸;
 CREATE USER KH IDENTIFIED BY KH;
 
--- »ý¼ºµÈ »ç¿ëÀÚ °èÁ¤¿¡°Ô ÃÖ¼ÒÇÑÀÇ ±ÇÇÑ (Á¢¼Ó, µ¥ÀÌÅÍ°ü¸®) ºÎ¿©
--- [ Ç¥Çö¹ý ] GRANT ±ÇÇÑ¸í1, ±ÇÇÑ¸í2, ±ÇÇÑ¸í3,.. TO °èÁ¤¸í;
+-- ìƒì„±ëœ ì‚¬ìš©ìž ê³„ì •ì—ê²Œ ìµœì†Œí•œì˜ ê¶Œí•œ (ì ‘ì†, ë°ì´í„°ê´€ë¦¬) ë¶€ì—¬
+-- [ í‘œí˜„ë²• ] GRANT ê¶Œí•œëª…1, ê¶Œí•œëª…2, ê¶Œí•œëª…3,.. TO ê³„ì •ëª…;
 GRANT CONNECT, RESOURCE TO KH;
-
-
