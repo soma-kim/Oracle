@@ -1,70 +1,70 @@
 /*
-    <½ÃÄö½º SEQUENCE>
-    ÀÚµ¿À¸·Î ¹øÈ£¸¦ ¹ß»ý½ÃÄÑ ÁÖ´Â ¿ªÇÒÀ» ÇÏ´Â °´Ã¼
-    Á¤¼ö°ªÀ» ÀÚµ¿À¸·Î ¼øÂ÷ÀûÀ¸·Î »ý¼ºÇØ ÁÜ
+    <ì‹œí€€ìŠ¤ SEQUENCE>
+    ìžë™ìœ¼ë¡œ ë²ˆí˜¸ë¥¼ ë°œìƒì‹œì¼œ ì£¼ëŠ” ì—­í• ì„ í•˜ëŠ” ê°ì²´
+    ì •ìˆ˜ê°’ì„ ìžë™ìœ¼ë¡œ ìˆœì°¨ì ìœ¼ë¡œ ìƒì„±í•´ ì¤Œ
     
-    ¿¹) È¸¿ø¹øÈ£, »ç¹ø, °Ô½Ã±Û ¹øÈ£ µîµî "Ã¤¹ø"ÇÒ ¶§ ÁÖ·Î ¾²ÀÏ ¿¹Á¤
+    ì˜ˆ) íšŒì›ë²ˆí˜¸, ì‚¬ë²ˆ, ê²Œì‹œê¸€ ë²ˆí˜¸ ë“±ë“± "ì±„ë²ˆ"í•  ë•Œ ì£¼ë¡œ ì“°ì¼ ì˜ˆì •
+     
+    1. ì‹œí€€ìŠ¤ ê°ì²´ ìƒì„± êµ¬ë¬¸
     
-    1. ½ÃÄö½º °´Ã¼ »ý¼º ±¸¹®
+    [ í‘œí˜„ë²• ]
+    CREATE SEQUENCE ì‹œí€€ìŠ¤ëª…
+    START WITH ì‹œìž‘ìˆ«ìž                  => ì²˜ìŒ ë°œìƒì‹œí‚¬ ì‹œìž‘ê°’ ì§€ì • (ìƒëžµ ê°€ëŠ¥)
+    INCREMENT BY ì¦ê°€ê°’                 => í•œë²ˆì— ëª‡ ì”© ì¦ê°€ì‹œí‚¬ ê±´ì§€ ì§€ì • (ìƒëžµ ê°€ëŠ¥)
+    MAXVALUE ìµœëŒ€ê°’                       => ìµœëŒ€ê°’ ì§€ì • (ìƒëžµ ê°€ëŠ¥)
+    MINVALUE ìµœì†Œê°’                       => ìµœì†Œê°’ ì§€ì • (ìƒëžµ ê°€ëŠ¥)
+    CYCLE/NOCYCLE                         => ê°’ì˜ ìˆœí™˜ ì—¬ë¶€ë¥¼ ì§€ì • (ìƒëžµ ê°€ëŠ¥)
+    CACHE ë°”ì´íŠ¸í¬ê¸°/NOCACHE       => ìºì‹œ ë©”ëª¨ë¦¬ ì‚¬ìš© ì—¬ë¶€ë¥¼ ì§€ì • (ìƒëžµ ê°€ëŠ¥)
+                                                        CACHE_SIZE ê¸°ë³¸ê°’ì€ 20BYTE
     
-    [ Ç¥Çö¹ý ]
-    CREATE SEQUENCE ½ÃÄö½º¸í
-    START WITH ½ÃÀÛ¼ýÀÚ                  => Ã³À½ ¹ß»ý½ÃÅ³ ½ÃÀÛ°ª ÁöÁ¤ (»ý·« °¡´É)
-    INCREMENT BY Áõ°¡°ª                 => ÇÑ¹ø¿¡ ¸î ¾¿ Áõ°¡½ÃÅ³ °ÇÁö ÁöÁ¤ (»ý·« °¡´É)
-    MAXVALUE ÃÖ´ë°ª                       => ÃÖ´ë°ª ÁöÁ¤ (»ý·« °¡´É)
-    MINVALUE ÃÖ¼Ò°ª                       => ÃÖ¼Ò°ª ÁöÁ¤ (»ý·« °¡´É)
-    CYCLE/NOCYCLE                         => °ªÀÇ ¼øÈ¯ ¿©ºÎ¸¦ ÁöÁ¤ (»ý·« °¡´É)
-    CACHE ¹ÙÀÌÆ®Å©±â/NOCACHE       => Ä³½Ã ¸Þ¸ð¸® »ç¿ë ¿©ºÎ¸¦ ÁöÁ¤ (»ý·« °¡´É)
-                                                        CACHE_SIZE ±âº»°ªÀº 20BYTE
-    
-    *Ä³½Ã ¸Þ¸ð¸®: ¹Ì¸® ¹ß»ýµÉ °ªµéÀ» »ý¼ºÇØ¼­ ÀúÀåÇØ µÎ´Â °ø°£
-                       ¸Å¹ø È£ÃâÇÒ ¶§¸¶´Ù »õ·ÎÀÌ ¹øÈ£¸¦ »ý¼ºÇÏ´Â °Íº¸´Ù
-                       Ä³½Ã ¸Þ¸ð¸® °ø°£¿¡ ¹Ì¸® »ý¼ºµÈ °ªµéÀ» °¡Á®´Ù ¾²°Ô µÇ¸é ÈÎ¾À ¼Óµµ°¡ ºü¸§
-                       ´Ü, Á¢¼ÓÀÌ ²÷±â°í ³ª¼­ ÀçÁ¢¼Ó ÈÄ ±âÁ¸¿¡ »ý¼ºµÇ¾î ÀÖ´ø °ªµéÀÌ ³¯¾Æ°¡°í ¾øÀ½
+    *ìºì‹œ ë©”ëª¨ë¦¬: ë¯¸ë¦¬ ë°œìƒë  ê°’ë“¤ì„ ìƒì„±í•´ì„œ ì €ìž¥í•´ ë‘ëŠ” ê³µê°„
+                       ë§¤ë²ˆ í˜¸ì¶œí•  ë•Œë§ˆë‹¤ ìƒˆë¡œì´ ë²ˆí˜¸ë¥¼ ìƒì„±í•˜ëŠ” ê²ƒë³´ë‹¤
+                       ìºì‹œ ë©”ëª¨ë¦¬ ê³µê°„ì— ë¯¸ë¦¬ ìƒì„±ëœ ê°’ë“¤ì„ ê°€ì ¸ë‹¤ ì“°ê²Œ ë˜ë©´ í›¨ì”¬ ì†ë„ê°€ ë¹ ë¦„
+                       ë‹¨, ì ‘ì†ì´ ëŠê¸°ê³  ë‚˜ì„œ ìž¬ì ‘ì† í›„ ê¸°ì¡´ì— ìƒì„±ë˜ì–´ ìžˆë˜ ê°’ë“¤ì´ ë‚ ì•„ê°€ê³  ì—†ìŒ
 */
 
 /*
-    *Á¢µÎ»ç
-    - Å×ÀÌºí¸í: TB_
-    - ºä¸í: VW_
-    - ½ÃÄö½º¸í: SEQ_
+    *ì ‘ë‘ì‚¬
+    - í…Œì´ë¸”ëª…: TB_
+    - ë·°ëª…: VW_
+    - ì‹œí€€ìŠ¤ëª…: SEQ_
 */
 
 CREATE SEQUENCE SEQ_TEST;
 
--- ÇöÀç ÀÌ Á¢¼ÓÇÑ °èÁ¤ÀÌ ¼ÒÀ¯ÇÏ°í ÀÖ´Â ½ÃÄö½º¿¡ ´ëÇÑ Á¤º¸ Á¶È¸¿ë µ¥ÀÌÅÍ µñ¼Å³Ê¸®
+-- í˜„ìž¬ ì´ ì ‘ì†í•œ ê³„ì •ì´ ì†Œìœ í•˜ê³  ìžˆëŠ” ì‹œí€€ìŠ¤ì— ëŒ€í•œ ì •ë³´ ì¡°íšŒìš© ë°ì´í„° ë”•ì…”ë„ˆë¦¬
 -- USER_SEQUENCES
 SELECT * FROM USER_SEQUENCES;
 
--- °£´ÜÇÑ ¿É¼ÇÀ» ºÎ¿©ÇØ¼­ »ç¹øÀ» Ã¤¹øÇÏ´Â ¿ëµµÀÇ ½ÃÄö½º »ý¼ºÇÏ±â
+-- ê°„ë‹¨í•œ ì˜µì…˜ì„ ë¶€ì—¬í•´ì„œ ì‚¬ë²ˆì„ ì±„ë²ˆí•˜ëŠ” ìš©ë„ì˜ ì‹œí€€ìŠ¤ ìƒì„±í•˜ê¸°
 CREATE SEQUENCE SEQ_EMPNO
 START WITH 300
 INCREMENT BY 5
 MAXVALUE 310
 NOCYCLE
 NOCACHE;
---> ÀÌ ½ÃÄö½º´Â 300, 305, 310¸¸ Ã¤¹ø °¡´ÉÇÒ °Í
+--> ì´ ì‹œí€€ìŠ¤ëŠ” 300, 305, 310ë§Œ ì±„ë²ˆ ê°€ëŠ¥í•  ê²ƒ
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 /*
-    2. ½ÃÄö½º »ç¿ë ±¸¹®
+    2. ì‹œí€€ìŠ¤ ì‚¬ìš© êµ¬ë¬¸
     
-    ½ÃÄö½º¸í.CURRVAL: ÇöÀç ½ÃÄö½ºÀÇ °ª (¸¶Áö¸·À¸·Î ¼º°øÀûÀ¸·Î ¹ß»ýµÈ NEXTVAL °ª)
-                                => ¸¶Áö¸·À¸·Î ¼º°øÀûÀ¸·Î ¹ß»ýµÈ NEXTVAL °ªÀ» ´ã¾ÆµÎ´Â ÀÏÁ¾ÀÇ º¯¼ö °°Àº °³³ä!
-    ½ÃÄö½º¸í.NEXTVAL: ½ÃÄö½ºÀÇ °ªÀ» Áõ°¡½ÃÅ°°í ±× Áõ°¡µÈ ½ÃÄö½º °ª
-                               ±âÁ¸ÀÇ ½ÃÄö½º °ª¿¡¼­ INCREMENT BY °ª¸¸Å­ Áõ°¡µÈ °ª
-                               (½ÃÄö½º¸í.CURRVAL + INCREMENT BY °ª)
+    ì‹œí€€ìŠ¤ëª….CURRVAL: í˜„ìž¬ ì‹œí€€ìŠ¤ì˜ ê°’ (ë§ˆì§€ë§‰ìœ¼ë¡œ ì„±ê³µì ìœ¼ë¡œ ë°œìƒëœ NEXTVAL ê°’)
+                                => ë§ˆì§€ë§‰ìœ¼ë¡œ ì„±ê³µì ìœ¼ë¡œ ë°œìƒëœ NEXTVAL ê°’ì„ ë‹´ì•„ë‘ëŠ” ì¼ì¢…ì˜ ë³€ìˆ˜ ê°™ì€ ê°œë…!
+    ì‹œí€€ìŠ¤ëª….NEXTVAL: ì‹œí€€ìŠ¤ì˜ ê°’ì„ ì¦ê°€ì‹œí‚¤ê³  ê·¸ ì¦ê°€ëœ ì‹œí€€ìŠ¤ ê°’
+                               ê¸°ì¡´ì˜ ì‹œí€€ìŠ¤ ê°’ì—ì„œ INCREMENT BY ê°’ë§Œí¼ ì¦ê°€ëœ ê°’
+                               (ì‹œí€€ìŠ¤ëª….CURRVAL + INCREMENT BY ê°’)
                                
-    => ´Ü, ½ÃÄö½º »ý¼º ÈÄ Ã¹ NEXTVALÀº START WITH·Î ÁöÁ¤µÈ ½ÃÀÛ°ªÀ¸·Î ¹ß»ý
+    => ë‹¨, ì‹œí€€ìŠ¤ ìƒì„± í›„ ì²« NEXTVALì€ START WITHë¡œ ì§€ì •ëœ ì‹œìž‘ê°’ìœ¼ë¡œ ë°œìƒ
 */
 
--- À§¿¡¼­ ¸¸µç SEQ_EMPNOÀ» °¡Áö°í Å×½ºÆ®
+-- ìœ„ì—ì„œ ë§Œë“  SEQ_EMPNOì„ ê°€ì§€ê³  í…ŒìŠ¤íŠ¸
 SELECT SEQ_EMPNO.CURRVAL
 FROM DUAL;
 -- ORA-08002: sequence SEQ_EMPNO.CURRVAL is not yet defined in this session
--- => NEXTVALÀ» ÇÑ ¹øÀÌ¶óµµ ¼öÇàÇÏÁö ¾Ê´Â ÀÌ»ó CURRVALÀ» ¾µ ¼ö ¾øÀ½
---      CURRVALÀº ¸¶Áö¸·¿¡ ¼º°øÀûÀ¸·Î ¼öÇàÇÑ NEXTVALÀÇ °ªÀ» ÀúÀåÇØ¼­ º¸¿© ÁÖ´Â ÀÓ½Ã°ªÀÌ±â ¶§¹®
+-- => NEXTVALì„ í•œ ë²ˆì´ë¼ë„ ìˆ˜í–‰í•˜ì§€ ì•ŠëŠ” ì´ìƒ CURRVALì„ ì“¸ ìˆ˜ ì—†ìŒ
+--      CURRVALì€ ë§ˆì§€ë§‰ì— ì„±ê³µì ìœ¼ë¡œ ìˆ˜í–‰í•œ NEXTVALì˜ ê°’ì„ ì €ìž¥í•´ì„œ ë³´ì—¬ ì£¼ëŠ” ìž„ì‹œê°’ì´ê¸° ë•Œë¬¸
 
 SELECT SEQ_EMPNO.NEXTVAL
 FROM DUAL; -- 300
@@ -73,43 +73,43 @@ SELECT SEQ_EMPNO.CURRVAL
 FROM DUAL; -- 300
 
 SELECT SEQ_EMPNO.CURRVAL
-FROM DUAL; -- ´Ù½Ã Á¶È¸ÇØµµ ¿©ÀüÈ÷ 300
+FROM DUAL; -- ë‹¤ì‹œ ì¡°íšŒí•´ë„ ì—¬ì „ížˆ 300
 
 SELECT SEQ_EMPNO.NEXTVAL
 FROM DUAL; -- 305
 
 SELECT * FROM USER_SEQUENCES;
--- µ¥ÀÌÅÍ µñ¼Å³Ê¸® Á¶È¸ ½Ã SEQ_EMPNO ½ÃÄö½ºÀÇ LAST_NUMBER °ªÀÌ 310À¸·Î ÁöÁ¤µÇ¾î ÀÖÀ½
--- LAST_NUMBER: ÇöÀç »óÈ²¿¡¼­ NEXTVALÀ» ÇÑ¹ø ½ÇÇàÇÒ °æ¿ì ¹ß»ýµÉ "¿¹Á¤ °ª"
+-- ë°ì´í„° ë”•ì…”ë„ˆë¦¬ ì¡°íšŒ ì‹œ SEQ_EMPNO ì‹œí€€ìŠ¤ì˜ LAST_NUMBER ê°’ì´ 310ìœ¼ë¡œ ì§€ì •ë˜ì–´ ìžˆìŒ
+-- LAST_NUMBER: í˜„ìž¬ ìƒí™©ì—ì„œ NEXTVALì„ í•œë²ˆ ì‹¤í–‰í•  ê²½ìš° ë°œìƒë  "ì˜ˆì • ê°’"
 
 SELECT SEQ_EMPNO.NEXTVAL
 FROM DUAL; -- 310
--- ¸¶Áö¸·À¸·Î ¼º°øÀûÀ¸·Î ÀÌ·ç¾îÁø NEXTVAL
+-- ë§ˆì§€ë§‰ìœ¼ë¡œ ì„±ê³µì ìœ¼ë¡œ ì´ë£¨ì–´ì§„ NEXTVAL
 -- LAST_NUMBER: 315
 
 SELECT SEQ_EMPNO.NEXTVAL
 FROM DUAL; -- 310? 315?
 -- ORA-08004: sequence SEQ_EMPNO.NEXTVAL exceeds MAXVALUE and cannot be instantiated
--- ÁöÁ¤ÇÑ MAXVALUE °ª (310)À» ÃÊ°úÇß±â ¶§¹®¿¡ ¿À·ù ¹ß»ý
--- ½ÇÆÐÇÑ NEXTVAL
+-- ì§€ì •í•œ MAXVALUE ê°’ (310)ì„ ì´ˆê³¼í–ˆê¸° ë•Œë¬¸ì— ì˜¤ë¥˜ ë°œìƒ
+-- ì‹¤íŒ¨í•œ NEXTVAL
 
 SELECT SEQ_EMPNO.CURRVAL
 FROM DUAL; -- 310
--- ¸¶Áö¸·À¸·Î ¼º°øÀûÀ¸·Î ÀÌ·ç¾îÁø NEXTVALÀÎ 310ÀÌ Ãâ·ÂµÊ
+-- ë§ˆì§€ë§‰ìœ¼ë¡œ ì„±ê³µì ìœ¼ë¡œ ì´ë£¨ì–´ì§„ NEXTVALì¸ 310ì´ ì¶œë ¥ë¨
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 /*
-    3. ½ÃÄö½º º¯°æ
+    3. ì‹œí€€ìŠ¤ ë³€ê²½
     
-    [ Ç¥Çö¹ý ] 
-    ALTER SEQUENCE ½ÃÄö½º¸í
-    INCREMENT BY Áõ°¡°ª                    => ÇÑ ¹ø¿¡ ¸î¾¿ Áõ°¡½ÃÅ³ °ÇÁö ÁöÁ¤ (»ý·« °¡´É)
-    MAXVALUE ÃÖ´ë°ª                         => ÃÖ´ë°ª ÁöÁ¤ (»ý·« °¡´É)
-    MINVALUE ÃÖ¼Ò°ª                          => ÃÖ¼Ò°ª ÁöÁ¤ (»ý·« °¡´É)
-    CYCLE/NOCYCLE                            => °ª ¼øÈ¯ ¿©ºÎ ÁöÁ¤ (»ý·« °¡´É)
-    CACHE ¹ÙÀÌÆ®Å©±â/NOCACHE          => Ä³½Ã ¸Þ¸ð¸® »ç¿ë ¿©ºÎ ÁöÁ¤ (»ý·« °¡´É)
+    [ í‘œí˜„ë²• ] 
+    ALTER SEQUENCE ì‹œí€€ìŠ¤ëª…
+    INCREMENT BY ì¦ê°€ê°’                    => í•œ ë²ˆì— ëª‡ì”© ì¦ê°€ì‹œí‚¬ ê±´ì§€ ì§€ì • (ìƒëžµ ê°€ëŠ¥)
+    MAXVALUE ìµœëŒ€ê°’                         => ìµœëŒ€ê°’ ì§€ì • (ìƒëžµ ê°€ëŠ¥)
+    MINVALUE ìµœì†Œê°’                          => ìµœì†Œê°’ ì§€ì • (ìƒëžµ ê°€ëŠ¥)
+    CYCLE/NOCYCLE                            => ê°’ ìˆœí™˜ ì—¬ë¶€ ì§€ì • (ìƒëžµ ê°€ëŠ¥)
+    CACHE ë°”ì´íŠ¸í¬ê¸°/NOCACHE          => ìºì‹œ ë©”ëª¨ë¦¬ ì‚¬ìš© ì—¬ë¶€ ì§€ì • (ìƒëžµ ê°€ëŠ¥)
     
-    *START WITH´Â º¯°æ ºÒ°¡ => Á¤ ¹Ù²Ù°í ½Í´Ù¸é ½ÃÄö½º »èÁ¦ ÈÄ ´Ù½Ã Àç»ý¼ºÇØ¾ß ÇÔ!!
+    *START WITHëŠ” ë³€ê²½ ë¶ˆê°€ => ì • ë°”ê¾¸ê³  ì‹¶ë‹¤ë©´ ì‹œí€€ìŠ¤ ì‚­ì œ í›„ ë‹¤ì‹œ ìž¬ìƒì„±í•´ì•¼ í•¨!!
 */
 
 ALTER SEQUENCE SEQ_EMPNO
@@ -117,9 +117,9 @@ MAXVALUE 400
 INCREMENT BY 10;
 
 SELECT * FROM USER_SEQUENCES;
--- ½ÃÄö½º º¯°æ Àü LAST_NUMBER = 315 => INCREMENT BY = 5, CURRVAL = 310 (ÇöÀç°ª)
--- ½ÃÄö½º º¯°æ ÈÄ LAST_NUMBER = 320
--- => ¾Æ¹«¸® ½ÃÄö½º°¡ ¹Ù²î´õ¶óµµ CURRVAL °ªÀº ¹Ù²îÁö ¾ÊÀ½
+-- ì‹œí€€ìŠ¤ ë³€ê²½ ì „ LAST_NUMBER = 315 => INCREMENT BY = 5, CURRVAL = 310 (í˜„ìž¬ê°’)
+-- ì‹œí€€ìŠ¤ ë³€ê²½ í›„ LAST_NUMBER = 320
+-- => ì•„ë¬´ë¦¬ ì‹œí€€ìŠ¤ê°€ ë°”ë€Œë”ë¼ë„ CURRVAL ê°’ì€ ë°”ë€Œì§€ ì•ŠìŒ
 
 SELECT SEQ_EMPNO.CURRVAL
 FROM DUAL; -- 310
@@ -130,21 +130,21 @@ FROM DUAL; -- 320
 SELECT * FROM USER_SEQUENCES;
 -- LAST_NUMBER = 330
 
--- Âü°í) SEQUENCE¸¦ »èÁ¦ÇÏ°í ½Í´Ù¸é
+-- ì°¸ê³ ) SEQUENCEë¥¼ ì‚­ì œí•˜ê³  ì‹¶ë‹¤ë©´
 DROP SEQUENCE SEQ_EMPNO;
 
 SELECT SEQ_EMPNO.CURRVAL
 FROM DUAL;
 -- ORA-02289: sequence does not exist
--- => ½ÃÄö½º°¡ ¾ø´Âµ¥ Á¶È¸ÇÏ·Á°í ÇØ¼­ ¹ß»ýÇÏ´Â ¿À·ù
+-- => ì‹œí€€ìŠ¤ê°€ ì—†ëŠ”ë° ì¡°íšŒí•˜ë ¤ê³  í•´ì„œ ë°œìƒí•˜ëŠ” ì˜¤ë¥˜
 --------------------------------------------------------------------------------------------------------------------------------------------
 
--- ½ÃÄö½º »ç¿ë ¿¹½Ã
--- ¸Å¹ø »õ·Î¿î »ç¹øÀÌ ¹ß»ýµÇ´Â ½ÃÄö½º¸¦ »ý¼º
+-- ì‹œí€€ìŠ¤ ì‚¬ìš© ì˜ˆì‹œ
+-- ë§¤ë²ˆ ìƒˆë¡œìš´ ì‚¬ë²ˆì´ ë°œìƒë˜ëŠ” ì‹œí€€ìŠ¤ë¥¼ ìƒì„±
 CREATE SEQUENCE SEQ_EID
 START WITH 300;
 
--- ¸Å¹ø »ç¿øÀÌ Ãß°¡µÉ ¶§¸¶´Ù ½ÇÇàÇÒ INSERT¹®
+-- ë§¤ë²ˆ ì‚¬ì›ì´ ì¶”ê°€ë  ë•Œë§ˆë‹¤ ì‹¤í–‰í•  INSERTë¬¸
 INSERT INTO EMPLOYEE (EMP_ID
                                   , EMP_NAME
                                   , EMP_NO
@@ -152,7 +152,7 @@ INSERT INTO EMPLOYEE (EMP_ID
                                   , SAL_LEVEL
                                   , HIRE_DATE)
 VALUES (SEQ_EID.NEXTVAL -- 300
-           , 'È«±æµ¿'
+           , 'í™ê¸¸ë™'
            , '111111-1111111'
            , 'J2'
            , 'S3'
@@ -165,7 +165,7 @@ INSERT INTO EMPLOYEE (EMP_ID
                                   , SAL_LEVEL
                                   , HIRE_DATE)
 VALUES (SEQ_EID.NEXTVAL -- 301
-           , '±è¿µÈñ'
+           , 'ê¹€ì˜í¬'
            , '222222-2222222'
            , 'J3'
            , 'S4'
@@ -180,7 +180,7 @@ INSERT INTO EMPLOYEE (EMP_ID
                                   , SAL_LEVEL
                                   , HIRE_DATE)
 VALUES (SEQ_EID.NEXTVAL -- 302
-           , '¹Ú¸»¶Ë'
+           , 'ë°•ë§ë˜¥'
            , '111111-2111111'
            , 'J5'
            , 'S2'
@@ -188,22 +188,22 @@ VALUES (SEQ_EID.NEXTVAL -- 302
            
 SELECT * FROM EMPLOYEE;
 
--- º¸Åë ½ÃÄö½º´Â PRIMARY KEY¿¡ ÇØ´çÇÏ´Â ½Äº° ¹øÈ£¸¦ Ã¤¹øÇÒ ¶§ ÁÖ·Î ¾¸ (INSERT ±¸¹®¿¡¼­ NEXTVAL Çü½ÄÀ¸·Î ¾¸)
+-- ë³´í†µ ì‹œí€€ìŠ¤ëŠ” PRIMARY KEYì— í•´ë‹¹í•˜ëŠ” ì‹ë³„ ë²ˆí˜¸ë¥¼ ì±„ë²ˆí•  ë•Œ ì£¼ë¡œ ì”€ (INSERT êµ¬ë¬¸ì—ì„œ NEXTVAL í˜•ì‹ìœ¼ë¡œ ì”€)
 
--- »ç¿ø¿¡ ´ëÇØ Ãß°¡ "¿äÃ»" ½Ã ½ÇÇàÇÒ SQL¹®
--- EMP_ID:              »ç¿ëÀÚ·ÎºÎÅÍ Á÷Á¢ÀûÀ¸·Î ÀÔ·Â X, ½ÃÄö½º
--- EMP_NAME:        »ç¿ëÀÚ·ÎºÎÅÍ Á÷Á¢ÀûÀ¸·Î ÀÔ·Â O
--- EMP_NO:            »ç¿ëÀÚ·ÎºÎÅÍ Á÷Á¢ÀûÀ¸·Î ÀÔ·Â O
--- EMAIL:               »ç¿ëÀÚ·ÎºÎÅÍ Á÷Á¢ÀûÀ¸·Î ÀÔ·Â O (ÇÊ¼ö X)
--- PHONE:              »ç¿ëÀÚ·ÎºÎÅÍ Á÷Á¢ÀûÀ¸·Î ÀÔ·Â O (ÇÊ¼ö X)
--- DEPT_CODE:       »ç¿ëÀÚ·ÎºÎÅÍ Á÷Á¢ÀûÀ¸·Î ÀÔ·Â X (ÇÊ¼ö X)
--- JOB_CODE:         »ç¿ëÀÚ·ÎºÎÅÍ Á÷Á¢ÀûÀ¸·Î ÀÔ·Â O
--- SAL_LEVEL:         »ç¿ëÀÚ·ÎºÎÅÍ Á÷Á¢ÀûÀ¸·Î ÀÔ·Â O
--- SALARY:             »ç¿ëÀÚ·ÎºÎÅÍ Á÷Á¢ÀûÀ¸·Î ÀÔ·Â X (ÇÊ¼ö X)
--- BONUS:             »ç¿ëÀÚ·ÎºÎÅÍ Á÷Á¢ÀûÀ¸·Î ÀÔ·Â X (ÇÊ¼ö X)
--- MANAGER_ID:    »ç¿ëÀÚ·ÎºÎÅÍ Á÷Á¢ÀûÀ¸·Î ÀÔ·Â X (ÇÊ¼ö X)
--- HIRE_DATE:        SYSDATE ±âÁØ
--- ENT_DATE:         NULLÀ¸·Î °íÁ¤        
+-- ì‚¬ì›ì— ëŒ€í•´ ì¶”ê°€ "ìš”ì²­" ì‹œ ì‹¤í–‰í•  SQLë¬¸
+-- EMP_ID:              ì‚¬ìš©ìžë¡œë¶€í„° ì§ì ‘ì ìœ¼ë¡œ ìž…ë ¥ X, ì‹œí€€ìŠ¤
+-- EMP_NAME:        ì‚¬ìš©ìžë¡œë¶€í„° ì§ì ‘ì ìœ¼ë¡œ ìž…ë ¥ O
+-- EMP_NO:            ì‚¬ìš©ìžë¡œë¶€í„° ì§ì ‘ì ìœ¼ë¡œ ìž…ë ¥ O
+-- EMAIL:               ì‚¬ìš©ìžë¡œë¶€í„° ì§ì ‘ì ìœ¼ë¡œ ìž…ë ¥ O (í•„ìˆ˜ X)
+-- PHONE:              ì‚¬ìš©ìžë¡œë¶€í„° ì§ì ‘ì ìœ¼ë¡œ ìž…ë ¥ O (í•„ìˆ˜ X)
+-- DEPT_CODE:       ì‚¬ìš©ìžë¡œë¶€í„° ì§ì ‘ì ìœ¼ë¡œ ìž…ë ¥ X (í•„ìˆ˜ X)
+-- JOB_CODE:         ì‚¬ìš©ìžë¡œë¶€í„° ì§ì ‘ì ìœ¼ë¡œ ìž…ë ¥ O
+-- SAL_LEVEL:         ì‚¬ìš©ìžë¡œë¶€í„° ì§ì ‘ì ìœ¼ë¡œ ìž…ë ¥ O
+-- SALARY:             ì‚¬ìš©ìžë¡œë¶€í„° ì§ì ‘ì ìœ¼ë¡œ ìž…ë ¥ X (í•„ìˆ˜ X)
+-- BONUS:             ì‚¬ìš©ìžë¡œë¶€í„° ì§ì ‘ì ìœ¼ë¡œ ìž…ë ¥ X (í•„ìˆ˜ X)
+-- MANAGER_ID:    ì‚¬ìš©ìžë¡œë¶€í„° ì§ì ‘ì ìœ¼ë¡œ ìž…ë ¥ X (í•„ìˆ˜ X)
+-- HIRE_DATE:        SYSDATE ê¸°ì¤€
+-- ENT_DATE:         NULLìœ¼ë¡œ ê³ ì •        
 -- ENT_YN:            DEFAULT 'N'
 INSERT INTO EMPLOYEE (EMP_ID
                                   , EMP_NAME
