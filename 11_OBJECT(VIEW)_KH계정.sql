@@ -1,44 +1,44 @@
 /*
-    <VIEW ºä>
-    SELECT (Äõ¸®¹®)À» ÀúÀåÇØ µÑ ¼ö ÀÖ´Â °´Ã¼
-    (ÀÚÁÖ ¾²´Â °Ç SELECT¹®À» ÀúÀåÇØ ÁÖ¸é ±ä SELECT¹®À» ¸Å¹ø ´Ù½Ã ±â¼úÇÒ ÇÊ¿ä°¡ ¾øÀ½)
-    ÀÓ½Ã Å×ÀÌºí °°Àº Á¸Àç (½ÇÁ¦ µ¥ÀÌÅÍ°¡ ´ã°Ü ÀÖ´Â °ÍÀº ¾Æ´Ô)
+    <VIEW ë·°>
+    SELECT (ì¿¼ë¦¬ë¬¸)ì„ ì €ìž¥í•´ ë‘˜ ìˆ˜ ìžˆëŠ” ê°ì²´
+    (ìžì£¼ ì“°ëŠ” ê±´ SELECTë¬¸ì„ ì €ìž¥í•´ ì£¼ë©´ ê¸´ SELECTë¬¸ì„ ë§¤ë²ˆ ë‹¤ì‹œ ê¸°ìˆ í•  í•„ìš”ê°€ ì—†ìŒ)
+    ìž„ì‹œ í…Œì´ë¸” ê°™ì€ ì¡´ìž¬ (ì‹¤ì œ ë°ì´í„°ê°€ ë‹´ê²¨ ìžˆëŠ” ê²ƒì€ ì•„ë‹˜)
 */
-
------ ½Ç½À ¹®Á¦ -----
--- 'ÇÑ±¹'¿¡¼­ ±Ù¹«ÇÏ´Â »ç¿øµéÀÇ »ç¹ø, ÀÌ¸§, ºÎ¼­¸í, ±Þ¿©, ±Ù¹«±¹°¡¸í, Á÷±Þ¸íÀ» Á¶È¸ÇÏ½Ã¿À
+ 
+----- ì‹¤ìŠµ ë¬¸ì œ -----
+-- 'í•œêµ­'ì—ì„œ ê·¼ë¬´í•˜ëŠ” ì‚¬ì›ë“¤ì˜ ì‚¬ë²ˆ, ì´ë¦„, ë¶€ì„œëª…, ê¸‰ì—¬, ê·¼ë¬´êµ­ê°€ëª…, ì§ê¸‰ëª…ì„ ì¡°íšŒí•˜ì‹œì˜¤
 DEPARTMENT DEPT_ID = EMPLOYEE DEPT_ CODE (D1)
 JOB JOB_CODE = EMPLOYEE JOB_CODE (J1)
 LOCATION LOCAL_CODE = DEPARTMENT LOCATION_ID (L1)
 NATIONAL NATIONAL_CODE = LOCATION NATIONAL_CODE  (KO)
 
--->> ¿À¶óÅ¬ Àü¿ë ±¸¹®
+-->> ì˜¤ë¼í´ ì „ìš© êµ¬ë¬¸
 SELECT E.EMP_ID, E.EMP_NAME, D.DEPT_ID, E.SALARY, N.NATIONAL_NAME, J.JOB_NAME
 FROM EMPLOYEE E, DEPARTMENT D, JOB J, LOCATION L, NATIONAL N
 WHERE E.DEPT_CODE = D.DEPT_ID
     AND E.JOB_CODE = J.JOB_CODE
     AND D.LOCATION_ID = L.LOCAL_CODE
     AND L.NATIONAL_CODE = N.NATIONAL_CODE
-    AND N.NATIONAL_NAME = 'ÇÑ±¹';
+    AND N.NATIONAL_NAME = 'í•œêµ­';
 
--->> ANSI ±¸¹®
+-->> ANSI êµ¬ë¬¸
 SELECT E.EMP_ID, E.EMP_NAME, D.DEPT_ID, E.SALARY, N.NATIONAL_NAME, J.JOB_NAME
 FROM EMPLOYEE E
 JOIN DEPARTMENT D ON (E.DEPT_CODE = D.DEPT_ID)
 JOIN JOB J USING (JOB_CODE)
 JOIN LOCATION L ON (D.LOCATION_ID = L.LOCAL_CODE)
 JOIN NATIONAL N ON (L.NATIONAL_CODE = N.NATIONAL_CODE)
-    AND N.NATIONAL_NAME = 'ÇÑ±¹';
+    AND N.NATIONAL_NAME = 'í•œêµ­';
     
 /*
-    1. VIEW »ý¼º ¹æ¹ý
+    1. VIEW ìƒì„± ë°©ë²•
     
-    [ Ç¥Çö¹ý ]
-    CREATE VIEW ºä¸í
-    AS (¼­ºêÄõ¸®);
+    [ í‘œí˜„ë²• ]
+    CREATE VIEW ë·°ëª…
+    AS (ì„œë¸Œì¿¼ë¦¬);
 */
 
--- ÀüÃ¼ »ç¿øµéÀÇ »ç¹ø, ÀÌ¸§, ºÎ¼­¸í, ±Þ¿©, ±Ù¹«±¹°¡¸í, Á÷±Þ¸íÀ» ´ãÀº ºä
+-- ì „ì²´ ì‚¬ì›ë“¤ì˜ ì‚¬ë²ˆ, ì´ë¦„, ë¶€ì„œëª…, ê¸‰ì—¬, ê·¼ë¬´êµ­ê°€ëª…, ì§ê¸‰ëª…ì„ ë‹´ì€ ë·°
 CREATE VIEW VW_EMPLOYEE
 AS (SELECT E.EMP_ID, E.EMP_NAME, D.DEPT_ID, E.SALARY, N.NATIONAL_NAME, J.JOB_NAME
       FROM EMPLOYEE E, DEPARTMENT D, JOB J, LOCATION L, NATIONAL N
@@ -47,19 +47,19 @@ AS (SELECT E.EMP_ID, E.EMP_NAME, D.DEPT_ID, E.SALARY, N.NATIONAL_NAME, J.JOB_NAM
           AND D.LOCATION_ID = L.LOCAL_CODE
           AND L.NATIONAL_CODE = N.NATIONAL_CODE);
 -- ORA-01031: insufficient privileges
--->> ÇöÀç KH°èÁ¤¿¡´Â ºä »ý¼º ±ÇÇÑÀÌ ¾ø¾î¼­ ¿À·ù ¹ß»ý
+-->> í˜„ìž¬ KHê³„ì •ì—ëŠ” ë·° ìƒì„± ê¶Œí•œì´ ì—†ì–´ì„œ ì˜¤ë¥˜ ë°œìƒ
 
--- ¿©±âºÎÅÍ Àá±ñ °ü¸®ÀÚ °èÁ¤À¸·Î Á¢¼Ó ÈÄ CREATE VIEW ±ÇÇÑ ºÎ¿©ÇÏ±â
+-- ì—¬ê¸°ë¶€í„° ìž ê¹ ê´€ë¦¬ìž ê³„ì •ìœ¼ë¡œ ì ‘ì† í›„ CREATE VIEW ê¶Œí•œ ë¶€ì—¬í•˜ê¸°
 GRANT CREATE VIEW TO KH;
 
--- ÀÌ ½ÃÁ¡ºÎÅÍ ´Ù½Ã KH °èÁ¤À¸·Î Á¢¼Ó ÈÄ ÀÛ¾÷
+-- ì´ ì‹œì ë¶€í„° ë‹¤ì‹œ KH ê³„ì •ìœ¼ë¡œ ì ‘ì† í›„ ìž‘ì—…
 
--- View VW_EMPLOYEEÀÌ(°¡) »ý¼ºµÇ¾ú½À´Ï´Ù.
--- ±ÇÇÑ ºÎ¿© ÈÄ¿¡´Â VIEW°¡ Àß ¸¸µé¾îÁü!
+-- View VW_EMPLOYEEì´(ê°€) ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤.
+-- ê¶Œí•œ ë¶€ì—¬ í›„ì—ëŠ” VIEWê°€ ìž˜ ë§Œë“¤ì–´ì§!
 
 SELECT * FROM VW_EMPLOYEE;
 
--- ¾Æ·¡ÀÇ Äõ¸®¹®°ú ºñ½ÁÇÑ ¸Æ¶ô
+-- ì•„ëž˜ì˜ ì¿¼ë¦¬ë¬¸ê³¼ ë¹„ìŠ·í•œ ë§¥ë½
 SELECT *
 FROM (SELECT E.EMP_ID, E.EMP_NAME, D.DEPT_ID, E.SALARY, N.NATIONAL_NAME, J.JOB_NAME
           FROM EMPLOYEE E, DEPARTMENT D, JOB J, LOCATION L, NATIONAL N
@@ -68,38 +68,38 @@ FROM (SELECT E.EMP_ID, E.EMP_NAME, D.DEPT_ID, E.SALARY, N.NATIONAL_NAME, J.JOB_N
               AND D.LOCATION_ID = L.LOCAL_CODE
               AND L.NATIONAL_CODE = N.NATIONAL_CODE);
               
--- 'ÇÑ±¹'¿¡¼­ ±Ù¹«ÇÏ´Â »ç¿øµéÀÇ »ç¹ø, »ç¿ø¸í, ºÎ¼­¸í, ±Þ¿©, ±Ù¹«±¹°¡¸í, Á÷±Þ¸íÀ» Á¶È¸ÇÏ°í ½Í´Ù¸é
+-- 'í•œêµ­'ì—ì„œ ê·¼ë¬´í•˜ëŠ” ì‚¬ì›ë“¤ì˜ ì‚¬ë²ˆ, ì‚¬ì›ëª…, ë¶€ì„œëª…, ê¸‰ì—¬, ê·¼ë¬´êµ­ê°€ëª…, ì§ê¸‰ëª…ì„ ì¡°íšŒí•˜ê³  ì‹¶ë‹¤ë©´
 SELECT *
 FROM VW_EMPLOYEE
-WHERE NATIONAL_NAME = 'ÇÑ±¹';
+WHERE NATIONAL_NAME = 'í•œêµ­';
 
--- À§¿Í °°ÀÌ º¹ÀâÇÑ ¼­ºêÄõ¸®¸¦ ÀÌ¿ëÇÏ¿© ±×¶§±×¶§ ÇÊ¿äÇÑ µ¥ÀÌÅÍµé¸¸ Á¶È¸ÇÏ´Â °Íº¸´Ù
--- ÇÑ¹ø ¼­ºêÄõ¸®·Î ºä¸¦ »ý¼ºÇÑ ÈÄ ÇØ´ç ºä¸íÀ¸·Î SELECT¹®À» ÀÌ¿ëÇÏ¸é ´õ °£´ÜÇÏ°Ô Á¶È¸ °¡´É
+-- ìœ„ì™€ ê°™ì´ ë³µìž¡í•œ ì„œë¸Œì¿¼ë¦¬ë¥¼ ì´ìš©í•˜ì—¬ ê·¸ë•Œê·¸ë•Œ í•„ìš”í•œ ë°ì´í„°ë“¤ë§Œ ì¡°íšŒí•˜ëŠ” ê²ƒë³´ë‹¤
+-- í•œë²ˆ ì„œë¸Œì¿¼ë¦¬ë¡œ ë·°ë¥¼ ìƒì„±í•œ í›„ í•´ë‹¹ ë·°ëª…ìœ¼ë¡œ SELECTë¬¸ì„ ì´ìš©í•˜ë©´ ë” ê°„ë‹¨í•˜ê²Œ ì¡°íšŒ ê°€ëŠ¥
 
--- ·¯½Ã¾Æ¿¡¼­ ±Ù¹«ÇÏ´Â »ç¿øµé¸¸ º¸°í ½Í´Ù¸é?
+-- ëŸ¬ì‹œì•„ì—ì„œ ê·¼ë¬´í•˜ëŠ” ì‚¬ì›ë“¤ë§Œ ë³´ê³  ì‹¶ë‹¤ë©´?
 SELECT *
 FROM VW_EMPLOYEE
-WHERE NATIONAL_NAME = '·¯½Ã¾Æ';
+WHERE NATIONAL_NAME = 'ëŸ¬ì‹œì•„';
 
--- ·¯½Ã¾Æ¿¡¼­ ±Ù¹«ÇÏ´Â »ç¿øµéÀÇ »ç¹ø, ÀÌ¸§, Á÷±Þ, º¸³Ê½º
+-- ëŸ¬ì‹œì•„ì—ì„œ ê·¼ë¬´í•˜ëŠ” ì‚¬ì›ë“¤ì˜ ì‚¬ë²ˆ, ì´ë¦„, ì§ê¸‰, ë³´ë„ˆìŠ¤
 SELECT EMP_ID, EMP_NAME, JOB_NAME, BONUS
 FROM VW_EMPLOYEE
-WHERE NATIONAL_NAME = '·¯½Ã¾Æ';
+WHERE NATIONAL_NAME = 'ëŸ¬ì‹œì•„';
 -- ORA-00904: "BONUS": invalid identifier
--- VW_EMPLOYEE Å×ÀÌºí¿¡ BONUS ÄÃ·³ÀÌ ¾ø±â ¶§¹®¿¡ ¿À·ù ¹ß»ý
+-- VW_EMPLOYEE í…Œì´ë¸”ì— BONUS ì»¬ëŸ¼ì´ ì—†ê¸° ë•Œë¬¸ì— ì˜¤ë¥˜ ë°œìƒ
 
--- ºä¿¡ º¸³Ê½º ÄÃ·³ÀÌ ¾ø´Â »óÅÂ¿¡¼­ º¸³Ê½ºµµ °°ÀÌ Á¶È¸ÇÏ°í ½Í´Ù¸é?
--- ºä¸¦ ´Ù½Ã »ý¼ºÇÏ±â => CREATE OR REPLACE VIEW ºä¸í
+-- ë·°ì— ë³´ë„ˆìŠ¤ ì»¬ëŸ¼ì´ ì—†ëŠ” ìƒíƒœì—ì„œ ë³´ë„ˆìŠ¤ë„ ê°™ì´ ì¡°íšŒí•˜ê³  ì‹¶ë‹¤ë©´?
+-- ë·°ë¥¼ ë‹¤ì‹œ ìƒì„±í•˜ê¸° => CREATE OR REPLACE VIEW ë·°ëª…
 
 /*
-    [ Ç¥Çö¹ý ]
-    CREATE OR REPLACE VIEW ºä¸í
-    AS (¼­ºêÄõ¸®);
+    [ í‘œí˜„ë²• ]
+    CREATE OR REPLACE VIEW ë·°ëª…
+    AS (ì„œë¸Œì¿¼ë¦¬);
     
-    => OR REPLACE´Â »ý·« °¡´ÉÇÔ
-         ºä »ý¼º ½Ã ±âÁ¸¿¡ Áßº¹µÈ ºä ÀÌ¸§ÀÌ ÀÖ´Ù¸é »õ·Ó°Ô ºä¸¦ »ý¼ºÇÏ´Â °Ô ¾Æ´Ï¶ó ÇØ´ç ºä¸¦ º¯°æ(°»½Å) ÇÏ´Â ¿É¼Ç
-                        ±âÁ¸¿¡ Áßº¹µÈ ºä ÀÌ¸§ÀÌ ¾ø´Ù¸é »õ·Ó°Ô ºä¸¦ »ý¼ºÇÔ
-                        Áï, ÀÖÀ¸¸é µ¤¾î¾º¿ì°í ¾øÀ¸¸é »õ·Î ¸¸µê!
+    => OR REPLACEëŠ” ìƒëžµ ê°€ëŠ¥í•¨
+         ë·° ìƒì„± ì‹œ ê¸°ì¡´ì— ì¤‘ë³µëœ ë·° ì´ë¦„ì´ ìžˆë‹¤ë©´ ìƒˆë¡­ê²Œ ë·°ë¥¼ ìƒì„±í•˜ëŠ” ê²Œ ì•„ë‹ˆë¼ í•´ë‹¹ ë·°ë¥¼ ë³€ê²½(ê°±ì‹ ) í•˜ëŠ” ì˜µì…˜
+                        ê¸°ì¡´ì— ì¤‘ë³µëœ ë·° ì´ë¦„ì´ ì—†ë‹¤ë©´ ìƒˆë¡­ê²Œ ë·°ë¥¼ ìƒì„±í•¨
+                        ì¦‰, ìžˆìœ¼ë©´ ë®ì–´ì”Œìš°ê³  ì—†ìœ¼ë©´ ìƒˆë¡œ ë§Œë“¦!
 */
 
 CREATE OR REPLACE VIEW VW_EMPLOYEE
@@ -109,185 +109,185 @@ AS (SELECT E.EMP_ID, E.EMP_NAME, D.DEPT_ID, E.SALARY, N.NATIONAL_NAME, J.JOB_NAM
           AND E.JOB_CODE = J.JOB_CODE
           AND D.LOCATION_ID = L.LOCAL_CODE
           AND L.NATIONAL_CODE = N.NATIONAL_CODE);
---> OR REPLACE¸¦ ½á¼­ "ÀÖÀ¸¸é °»½Å"ÀÌ¶ó´Â ¿É¼ÇÀ» Áá±â ¶§¹®¿¡ ¿À·ù ¾øÀÌ Àß »ý¼ºµÇ¾ú´Ù°í ³ª¿È!
+--> OR REPLACEë¥¼ ì¨ì„œ "ìžˆìœ¼ë©´ ê°±ì‹ "ì´ë¼ëŠ” ì˜µì…˜ì„ ì¤¬ê¸° ë•Œë¬¸ì— ì˜¤ë¥˜ ì—†ì´ ìž˜ ìƒì„±ë˜ì—ˆë‹¤ê³  ë‚˜ì˜´!
 
 SELECT EMP_ID, EMP_NAME, JOB_NAME, BONUS
 FROM VW_EMPLOYEE
-WHERE NATIONAL_NAME = '·¯½Ã¾Æ';
--- ±âÁ¸ÀÇ ºä¸¦ °»½Å ÈÄ ¿À·ù »ç¶óÁü
+WHERE NATIONAL_NAME = 'ëŸ¬ì‹œì•„';
+-- ê¸°ì¡´ì˜ ë·°ë¥¼ ê°±ì‹  í›„ ì˜¤ë¥˜ ì‚¬ë¼ì§
 
--- ºä¸¦ ³í¸®ÀûÀÎ °¡»óÅ×ÀÌºí => ½ÇÁúÀûÀ¸·Î µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ°í ÀÖÁö´Â ¾ÊÀ½
--- (´Ü¼øÈ÷ Äõ¸®¹®ÀÌ TEXT ¹®±¸·Î ÀúÀåµÇ¾î ÀÖÀ½)
--- Âü°í) ÇØ´ç °èÁ¤ÀÌ °¡Áö°í ÀÖ´Â VIEWµé¿¡ ´ëÇØ ³»¿ëÀ» Á¶È¸ÇÏ°íÀÚ ÇÑ´Ù¸é
---         USER_VIEWS µ¥ÀÌÅÍ µñ¼Å³Ê¸®¸¦ Á¶È¸ÇÏ¸é µÊ
+-- ë·°ë¥¼ ë…¼ë¦¬ì ì¸ ê°€ìƒí…Œì´ë¸” => ì‹¤ì§ˆì ìœ¼ë¡œ ë°ì´í„°ë¥¼ ì €ìž¥í•˜ê³  ìžˆì§€ëŠ” ì•ŠìŒ
+-- (ë‹¨ìˆœížˆ ì¿¼ë¦¬ë¬¸ì´ TEXT ë¬¸êµ¬ë¡œ ì €ìž¥ë˜ì–´ ìžˆìŒ)
+-- ì°¸ê³ ) í•´ë‹¹ ê³„ì •ì´ ê°€ì§€ê³  ìžˆëŠ” VIEWë“¤ì— ëŒ€í•´ ë‚´ìš©ì„ ì¡°íšŒí•˜ê³ ìž í•œë‹¤ë©´
+--         USER_VIEWS ë°ì´í„° ë”•ì…”ë„ˆë¦¬ë¥¼ ì¡°íšŒí•˜ë©´ ë¨
 
 SELECET * FROM USER_VIEWS;
 
 /*
-    *ºä ÄÃ·³¿¡ º°Äª ºÎ¿©
-    ¼­ºêÄõ¸® SELECTÀý¿¡ ÇÔ¼ö³ª »ê¼ú¿¬»ê½ÄÀÌ ±â¼úµÇ¾î ÀÖÀ» °æ¿ì ¹Ýµå½Ã º°Äª ÁöÁ¤
+    *ë·° ì»¬ëŸ¼ì— ë³„ì¹­ ë¶€ì—¬
+    ì„œë¸Œì¿¼ë¦¬ SELECTì ˆì— í•¨ìˆ˜ë‚˜ ì‚°ìˆ ì—°ì‚°ì‹ì´ ê¸°ìˆ ë˜ì–´ ìžˆì„ ê²½ìš° ë°˜ë“œì‹œ ë³„ì¹­ ì§€ì •
 */
 
--- »ç¿øÀÇ »ç¹ø, ÀÌ¸§, Á÷±Þ¸í, ¼ºº°, ±Ù¹«³â¼ö¸¦ Á¶È¸ÇÒ ¼ö ÀÖ´Â SELECT¹®À» ºä·Î Á¤ÀÇ
+-- ì‚¬ì›ì˜ ì‚¬ë²ˆ, ì´ë¦„, ì§ê¸‰ëª…, ì„±ë³„, ê·¼ë¬´ë…„ìˆ˜ë¥¼ ì¡°íšŒí•  ìˆ˜ ìžˆëŠ” SELECTë¬¸ì„ ë·°ë¡œ ì •ì˜
 CREATE OR REPLACE VIEW VW_EMP_JOB
 AS (SELECT EMP_ID
               , EMP_NAME
               , JOB_NAME
-              , DECODE(SUBSTR(EMP_NO, 8, 1), '1', '³²', '2', '¿©')
+              , DECODE(SUBSTR(EMP_NO, 8, 1), '1', 'ë‚¨', '2', 'ì—¬')
               , EXTRACT(YEAR FROM SYSDATE) - EXTRACT(YEAR FROM HIRE_DATE)
-              -- ÇÞ¼ö, ³â¼ö·Î ±¸ÇÒ ¶§´Â ±×³É ÇÏ¸é µÇ´Âµ¥ ¼¼´Â ¼ö(¸¸)À¸·Î ±¸ÇÏ°í ½ÍÀ¸¸é +1 ÇØ ÁÖ±â!
+              -- í–‡ìˆ˜, ë…„ìˆ˜ë¡œ êµ¬í•  ë•ŒëŠ” ê·¸ëƒ¥ í•˜ë©´ ë˜ëŠ”ë° ì„¸ëŠ” ìˆ˜(ë§Œ)ìœ¼ë¡œ êµ¬í•˜ê³  ì‹¶ìœ¼ë©´ +1 í•´ ì£¼ê¸°!
     FROM EMPLOYEE
     JOIN JOB USING (JOB_CODE));
 -- ORA-00998: must name this expression with a column alias
---=> ÇÔ¼ö½Ä, »ê¼ú¿¬»ê½Ä¿¡ º°ÄªÀ» ÁöÁ¤ÇÏÁö ¾Ê¾Æ ¿À·ù ¹ß»ý
+--=> í•¨ìˆ˜ì‹, ì‚°ìˆ ì—°ì‚°ì‹ì— ë³„ì¹­ì„ ì§€ì •í•˜ì§€ ì•Šì•„ ì˜¤ë¥˜ ë°œìƒ
 
 CREATE OR REPLACE VIEW VW_EMP_JOB
 AS (SELECT EMP_ID
               , EMP_NAME
               , JOB_NAME
-              , DECODE(SUBSTR(EMP_NO, 8, 1), '1', '³²', '2', '¿©') ¼ºº°
-              , EXTRACT(YEAR FROM SYSDATE) - EXTRACT(YEAR FROM HIRE_DATE) ±Ù¹«³â¼ö
-              -- ÇÞ¼ö, ³â¼ö·Î ±¸ÇÒ ¶§´Â ±×³É ÇÏ¸é µÇ´Âµ¥ ¼¼´Â ¼ö(¸¸)À¸·Î ±¸ÇÏ°í ½ÍÀ¸¸é +1 ÇØ ÁÖ±â!
+              , DECODE(SUBSTR(EMP_NO, 8, 1), '1', 'ë‚¨', '2', 'ì—¬') ì„±ë³„
+              , EXTRACT(YEAR FROM SYSDATE) - EXTRACT(YEAR FROM HIRE_DATE) ê·¼ë¬´ë…„ìˆ˜
+              -- í–‡ìˆ˜, ë…„ìˆ˜ë¡œ êµ¬í•  ë•ŒëŠ” ê·¸ëƒ¥ í•˜ë©´ ë˜ëŠ”ë° ì„¸ëŠ” ìˆ˜(ë§Œ)ìœ¼ë¡œ êµ¬í•˜ê³  ì‹¶ìœ¼ë©´ +1 í•´ ì£¼ê¸°!
      FROM EMPLOYEE
      JOIN JOB USING (JOB_CODE));
--- ºä »ý¼º ¼º°ø
+-- ë·° ìƒì„± ì„±ê³µ
 
 SELECT * FROM VW_EMP_JOB;
 
--- ¶Ç ´Ù¸¥ ¹æ¹ýÀ¸·Î º°Äª ºÎ¿© °¡´É(´Ü, ¸ðµç ÄÃ·³¿¡ ´ëÇØ º°ÄªÀ» ¸ðµÎ ´Ù ±â¼úÇØ¾ß ÇÔ)
-CREATE OR REPLACE VIEW VW_EMP_JOB (»ç¹ø, »ç¿ø¸í, Á÷±Þ¸í, ¼ºº°, ±Ù¹«³â¼ö)
+-- ë˜ ë‹¤ë¥¸ ë°©ë²•ìœ¼ë¡œ ë³„ì¹­ ë¶€ì—¬ ê°€ëŠ¥(ë‹¨, ëª¨ë“  ì»¬ëŸ¼ì— ëŒ€í•´ ë³„ì¹­ì„ ëª¨ë‘ ë‹¤ ê¸°ìˆ í•´ì•¼ í•¨)
+CREATE OR REPLACE VIEW VW_EMP_JOB (ì‚¬ë²ˆ, ì‚¬ì›ëª…, ì§ê¸‰ëª…, ì„±ë³„, ê·¼ë¬´ë…„ìˆ˜)
 AS (SELECT EMP_ID
               , EMP_NAME
               , JOB_NAME
-              , DECODE(SUBSTR(EMP_NO, 8, 1), '1', '³²', '2', '¿©')
+              , DECODE(SUBSTR(EMP_NO, 8, 1), '1', 'ë‚¨', '2', 'ì—¬')
               , EXTRACT(YEAR FROM SYSDATE) - EXTRACT(YEAR FROM HIRE_DATE)
      FROM EMPLOYEE
      JOIN JOB USING (JOB_CODE));
 
 SELECT * FROM VW_EMP_JOB;
 
-SELECT »ç¿ø¸í, ±Ù¹«³â¼ö
+SELECT ì‚¬ì›ëª…, ê·¼ë¬´ë…„ìˆ˜
 FROM VW_EMP_JOB;
 
-SELECT »ç¿ø¸í, Á÷±Þ¸í
+SELECT ì‚¬ì›ëª…, ì§ê¸‰ëª…
 FROM VW_EMP_JOB
-WHERE ¼ºº° = '¿©';
+WHERE ì„±ë³„ = 'ì—¬';
 
--- ±Ù¹«³â¼ö°¡ 20³â ÀÌ»óÀÎ »ç¿øµéÀÇ ¸ðµç ÄÃ·³
+-- ê·¼ë¬´ë…„ìˆ˜ê°€ 20ë…„ ì´ìƒì¸ ì‚¬ì›ë“¤ì˜ ëª¨ë“  ì»¬ëŸ¼
 SELECT *
 FROM VW_EMP_JOB
-WHERE ±Ù¹«³â¼ö >= 20;
+WHERE ê·¼ë¬´ë…„ìˆ˜ >= 20;
 
--- ºä¸¦ »èÁ¦ÇÏ°íÀÚ ÇÑ´Ù¸é
+-- ë·°ë¥¼ ì‚­ì œí•˜ê³ ìž í•œë‹¤ë©´
 DROP VIEW VW_EMP_JOB;
 
 SELECT * FROM VW_EMP_JOB;
 -- ORA-00942: table or view does not exist
---> ºä°¡ Àß »èÁ¦µÈ °ÍÀ» È®ÀÎ °¡´É
+--> ë·°ê°€ ìž˜ ì‚­ì œëœ ê²ƒì„ í™•ì¸ ê°€ëŠ¥
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 /*
-    *»ý¼ºµÈ ºä¸¦ ÀÌ¿ëÇØ¼­ DML (INSERT, UPDATE, DELETE) »ç¿ë °¡´É
-      ´Ü, ºä¸¦ ÅëÇØ¼­ º¯°æÇÏ°Ô µÇ¸é ½ÇÁ¦ µ¥ÀÌÅÍ°¡ ´ã°Ü ÀÖ´Â ½ÇÁúÀûÀÎ Å×ÀÌºí (º£ÀÌ½ºÅ×ÀÌºí)¿¡µµ Àû¿ëµÊ
+    *ìƒì„±ëœ ë·°ë¥¼ ì´ìš©í•´ì„œ DML (INSERT, UPDATE, DELETE) ì‚¬ìš© ê°€ëŠ¥
+      ë‹¨, ë·°ë¥¼ í†µí•´ì„œ ë³€ê²½í•˜ê²Œ ë˜ë©´ ì‹¤ì œ ë°ì´í„°ê°€ ë‹´ê²¨ ìžˆëŠ” ì‹¤ì§ˆì ì¸ í…Œì´ë¸” (ë² ì´ìŠ¤í…Œì´ë¸”)ì—ë„ ì ìš©ë¨
 */
 
--- Å×½ºÆ®¿ë ºä »ý¼º
+-- í…ŒìŠ¤íŠ¸ìš© ë·° ìƒì„±
 CREATE OR REPLACE VIEW VW_JOB
 AS (SELECT *
       FROM JOB);
 
-SELECT * FROM VW_JOB; -- ºä (º¹»çº»)
-SELECT * FROM JOB; -- º£ÀÌ½ºÅ×ÀÌºí (¿øº»)
+SELECT * FROM VW_JOB; -- ë·° (ë³µì‚¬ë³¸)
+SELECT * FROM JOB; -- ë² ì´ìŠ¤í…Œì´ë¸” (ì›ë³¸)
 
--- ºä¿¡ INSERT
+-- ë·°ì— INSERT
 INSERT INTO VW_JOB
-VALUES ('J8', 'ÀÎÅÏ'); -- º£ÀÌ½ºÅ×ÀÌºí(JOB)¿¡ °ª INSERT
+VALUES ('J8', 'ì¸í„´'); -- ë² ì´ìŠ¤í…Œì´ë¸”(JOB)ì— ê°’ INSERT
 
 SELECT * FROM VW_JOB;
 SELECT * FROM JOB;
 
--- ºä¿¡ UPDATE
--- JOB_CODE°¡ J8ÀÎ JOB_NAMEÀ» ¾Ë¹Ù·Î UPDATE
+-- ë·°ì— UPDATE
+-- JOB_CODEê°€ J8ì¸ JOB_NAMEì„ ì•Œë°”ë¡œ UPDATE
 UPDATE VW_JOB
-SET JOB_NAME = '¾Ë¹Ù'
-WHERE JOB_CODE = 'J8'; -- º£ÀÌ½ºÅ×ÀÌºí (JOB)¿¡ °ª UPDATE
+SET JOB_NAME = 'ì•Œë°”'
+WHERE JOB_CODE = 'J8'; -- ë² ì´ìŠ¤í…Œì´ë¸” (JOB)ì— ê°’ UPDATE
 
 SELECT * FROM VW_JOB;
 SELECT * FROM JOB;
 
--- ºä¿¡ DELETE
--- JOB_CODE°¡ J8ÀÎ ÇàÀ» »èÁ¦
+-- ë·°ì— DELETE
+-- JOB_CODEê°€ J8ì¸ í–‰ì„ ì‚­ì œ
 DELETE
 FROM VW_JOB
-WHERE JOB_CODE = 'J8'; -- º£ÀÌ½ºÅ×ÀÌºí (JOB)¿¡ °ª DELETE
+WHERE JOB_CODE = 'J8'; -- ë² ì´ìŠ¤í…Œì´ë¸” (JOB)ì— ê°’ DELETE
 
 SELECT * FROM VW_JOB;
 SELECT * FROM JOB;
---> DML¹® »ç¿ë ½Ã ºä¿¡¼­ ÁøÇàÇÏ±â´Â ÇÏÁö¸¸,
---  »ç½Ç»ó 'Å×ÀÌºí¿¡¼­ »èÁ¦µÇ±â ¶§¹®¿¡' ºä¿¡µµ »èÁ¦µÈ °ÍÃ³·³ º¸ÀÌ´Â °ÍÀÓ!
+--> DMLë¬¸ ì‚¬ìš© ì‹œ ë·°ì—ì„œ ì§„í–‰í•˜ê¸°ëŠ” í•˜ì§€ë§Œ,
+--  ì‚¬ì‹¤ìƒ 'í…Œì´ë¸”ì—ì„œ ì‚­ì œë˜ê¸° ë•Œë¬¸ì—' ë·°ì—ë„ ì‚­ì œëœ ê²ƒì²˜ëŸ¼ ë³´ì´ëŠ” ê²ƒìž„!
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
--- ºä¿¡ DMLÀÌ Àû¿ë ¾È µÇ´Â °æ¿ì
+-- ë·°ì— DMLì´ ì ìš© ì•ˆ ë˜ëŠ” ê²½ìš°
 
--- Å×½ºÆ®¿ë ºä »ý¼º
+-- í…ŒìŠ¤íŠ¸ìš© ë·° ìƒì„±
 CREATE OR REPLACE VIEW VW_JOB
 AS (SELECT JOB_CODE
       FROM JOB);
       
 SELECT * FROM VW_JOB;
 
--- ºä¿¡ INSERT => ºÒ°¡
+-- ë·°ì— INSERT => ë¶ˆê°€
 INSERT INTO VW_JOB (JOB_CODE, JOB_NAME)
-VALUES ('J8', 'ÀÎÅÏ');
+VALUES ('J8', 'ì¸í„´');
 -- ORA-00904: "JOB_NAME": invalid identifier
 
 SELECT * FROM JOB;
 
--- ºä¿¡ UPDATE => ºÒ°¡
+-- ë·°ì— UPDATE => ë¶ˆê°€
 UPDATE VW_JOB
-SET JOB_NAME = 'ÀÎÅÏ'
+SET JOB_NAME = 'ì¸í„´'
 WHERE JOB_CODE = 'J7';
 -- ORA-00904: "JOB_NAME": invalid identifier
 
--- ºä¿¡ DELETE => ºÒ°¡
+-- ë·°ì— DELETE => ë¶ˆê°€
 DELETE
 FROM VW_JOB
-WHERE JOB_NAME = '»ç¿ø';
+WHERE JOB_NAME = 'ì‚¬ì›';
 -- ORA-00904: "JOB_NAME": invalid identifier
 
 /*
-    *ÇÏÁö¸¸ ºä¸¦ °¡Áö°í DMLÀÌ ºÒ°¡´ÉÇÑ °æ¿ì°¡ ´õ ¸¹À½
+    *í•˜ì§€ë§Œ ë·°ë¥¼ ê°€ì§€ê³  DMLì´ ë¶ˆê°€ëŠ¥í•œ ê²½ìš°ê°€ ë” ë§ŽìŒ
     
-    1) ºä¿¡ Á¤ÀÇµÇ¾î ÀÖÁö ¾ÊÀº ÄÃ·³À» Á¶ÀÛÇÏ´Â °æ¿ì
-    2) ºä¿¡ Á¤ÀÇµÇ¾î ÀÖÁö ¾ÊÀº ÄÃ·³ Áß º£ÀÌ½ºÅ×ÀÌºí»ó¿¡ NOT NULL Á¦¾àÁ¶°ÇÀÌ °É·Á ÀÖ´Â °æ¿ì
-    3) »ê¼ú¿¬»ê½Ä ¶Ç´Â ÇÔ¼ö¸¦ ÅëÇØ¼­ Á¤ÀÇµÇ¾î ÀÖ´Â °æ¿ì
-    4) ¼­ºêÄõ¸® ºÎºÐ¿¡ ±×·ìÇÔ¼ö³ª GROUP BYÀýÀÌ Æ÷ÇÔµÈ °æ¿ì
-    5) ¼­ºêÄõ¸® ºÎºÐ¿¡ DISTINCT ±¸¹®ÀÌ Æ÷ÇÔµÈ °æ¿ì
-    6) JOINÀ» ÀÌ¿ëÇØ¼­ ¿©·¯ Å×ÀÌºíÀ» ¸ÅÄª½ÃÄÑ¼­ ºä·Î Á¤ÀÇÇÑ °æ¿ì
+    1) ë·°ì— ì •ì˜ë˜ì–´ ìžˆì§€ ì•Šì€ ì»¬ëŸ¼ì„ ì¡°ìž‘í•˜ëŠ” ê²½ìš°
+    2) ë·°ì— ì •ì˜ë˜ì–´ ìžˆì§€ ì•Šì€ ì»¬ëŸ¼ ì¤‘ ë² ì´ìŠ¤í…Œì´ë¸”ìƒì— NOT NULL ì œì•½ì¡°ê±´ì´ ê±¸ë ¤ ìžˆëŠ” ê²½ìš°
+    3) ì‚°ìˆ ì—°ì‚°ì‹ ë˜ëŠ” í•¨ìˆ˜ë¥¼ í†µí•´ì„œ ì •ì˜ë˜ì–´ ìžˆëŠ” ê²½ìš°
+    4) ì„œë¸Œì¿¼ë¦¬ ë¶€ë¶„ì— ê·¸ë£¹í•¨ìˆ˜ë‚˜ GROUP BYì ˆì´ í¬í•¨ëœ ê²½ìš°
+    5) ì„œë¸Œì¿¼ë¦¬ ë¶€ë¶„ì— DISTINCT êµ¬ë¬¸ì´ í¬í•¨ëœ ê²½ìš°
+    6) JOINì„ ì´ìš©í•´ì„œ ì—¬ëŸ¬ í…Œì´ë¸”ì„ ë§¤ì¹­ì‹œì¼œì„œ ë·°ë¡œ ì •ì˜í•œ ê²½ìš°
     
-    => ÀÌ·± ÀÌÀ¯·Î ºä´Â Á¶È¸¿ëÀ¸·Î ¸¹ÀÌ ¾¸
+    => ì´ëŸ° ì´ìœ ë¡œ ë·°ëŠ” ì¡°íšŒìš©ìœ¼ë¡œ ë§Žì´ ì”€
     
 */
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 /*
-    *VIEW ¿É¼Ç
+    *VIEW ì˜µì…˜
     
-    [ »ó¼¼Ç¥Çö¹ý ]
-    CREATE OR REPLCAE FORCE/NOFORCE VIEW ºä¸í
-    AS (¼­ºêÄõ¸®)
+    [ ìƒì„¸í‘œí˜„ë²• ]
+    CREATE OR REPLCAE FORCE/NOFORCE VIEW ë·°ëª…
+    AS (ì„œë¸Œì¿¼ë¦¬)
     WITH CHECK OPTION;
     
-    1) OR REPLACE: ÇØ´ç ºä¸íÀÌ ÀÌ¹Ì Á¸ÀçÇÏ¸é °»½Å½ÃÄÑ ÁÜ
-                                                  Á¸ÀçÇÏÁö ¾ÊÀ¸¸é »õ·ÎÀÌ »ý¼º½ÃÄÑ ÁÜ
+    1) OR REPLACE: í•´ë‹¹ ë·°ëª…ì´ ì´ë¯¸ ì¡´ìž¬í•˜ë©´ ê°±ì‹ ì‹œì¼œ ì¤Œ
+                                                  ì¡´ìž¬í•˜ì§€ ì•Šìœ¼ë©´ ìƒˆë¡œì´ ìƒì„±ì‹œì¼œ ì¤Œ
     2) FORCE / NOFORCE
-        - FORCE: ¼­ºêÄõ¸®¿¡ ±â¼úµÈ Å×ÀÌºíÀÌ Á¸ÀçÇÏÁö ¾Ê´õ¶óµµ ºä°¡ »ý¼º
-        - NOFORCE: ¼­ºêÄõ¸®¿¡ ±â¼úµÈ Å×ÀÌºíÀÌ ¹Ýµå½Ã Á¸ÀçÇØ¾ß¸¸ ºä°¡ »ý¼º (»ý·« ½Ã ±âº»°ª)
-    3) WITH CHECK OPTION: ¼­ºêÄõ¸®ÀÇ Á¶°ÇÀý¿¡ (WHEREÀý) ±â¼úµÈ ³»¿ë¿¡ ¸¸Á·ÇÏ´Â °ªÀ¸·Î¸¸ DMLÀÌ °¡´É
-                                       Á¶°Ç¿¡ ºÎÇÕÇÏÁö ¾Ê´Â °ªÀ» ¼öÁ¤ÇÏ´Â °æ¿ì ¿À·ù ¹ß»ý
-    4) WITH READ ONLY: ºä¿¡ ´ëÇØ¼­ Á¶È¸¸¸ °¡´É (INSERT, UPDATE, DELETE ¼öÇà ºÒ°¡)
+        - FORCE: ì„œë¸Œì¿¼ë¦¬ì— ê¸°ìˆ ëœ í…Œì´ë¸”ì´ ì¡´ìž¬í•˜ì§€ ì•Šë”ë¼ë„ ë·°ê°€ ìƒì„±
+        - NOFORCE: ì„œë¸Œì¿¼ë¦¬ì— ê¸°ìˆ ëœ í…Œì´ë¸”ì´ ë°˜ë“œì‹œ ì¡´ìž¬í•´ì•¼ë§Œ ë·°ê°€ ìƒì„± (ìƒëžµ ì‹œ ê¸°ë³¸ê°’)
+    3) WITH CHECK OPTION: ì„œë¸Œì¿¼ë¦¬ì˜ ì¡°ê±´ì ˆì— (WHEREì ˆ) ê¸°ìˆ ëœ ë‚´ìš©ì— ë§Œì¡±í•˜ëŠ” ê°’ìœ¼ë¡œë§Œ DMLì´ ê°€ëŠ¥
+                                       ì¡°ê±´ì— ë¶€í•©í•˜ì§€ ì•ŠëŠ” ê°’ì„ ìˆ˜ì •í•˜ëŠ” ê²½ìš° ì˜¤ë¥˜ ë°œìƒ
+    4) WITH READ ONLY: ë·°ì— ëŒ€í•´ì„œ ì¡°íšŒë§Œ ê°€ëŠ¥ (INSERT, UPDATE, DELETE ìˆ˜í–‰ ë¶ˆê°€)
 */
 
 -- 2) FORCE/NOFORCE
@@ -295,18 +295,18 @@ CREATE OR REPLACE VIEW VW_TEST
 AS (SELECT *
       FROM TT);
 -- ORA-00942: table or view does not exist
--- => TT¶ó´Â Å×ÀÌºíÀÌ Á¸ÀçÇÏÁö ¾Ê¾Æ¼­ ¿À·ù ¹ß»ý
+-- => TTë¼ëŠ” í…Œì´ë¸”ì´ ì¡´ìž¬í•˜ì§€ ì•Šì•„ì„œ ì˜¤ë¥˜ ë°œìƒ
 
 CREATE OR REPLACE FORCE VIEW VW_TEST
 AS (SELECT *
       FROM TT); 
--- °æ°í: ÄÄÆÄÀÏ ¿À·ù¿Í ÇÔ²² ºä°¡ »ý¼ºµÇ¾ú½À´Ï´Ù.
--- => ½ÇÇàÀº µÇ³ª °æ°í°¡ ¶ä
+-- ê²½ê³ : ì»´íŒŒì¼ ì˜¤ë¥˜ì™€ í•¨ê»˜ ë·°ê°€ ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤.
+-- => ì‹¤í–‰ì€ ë˜ë‚˜ ê²½ê³ ê°€ ëœ¸
 
 SELECT * FROM VW_TEST;
 -- ORA-04063: view "KH.VW_TEST" has errors
--- ÇöÀç ¿øº» Å×ÀÌºíÀÌ ¾ø¾î¼­ Á¶È¸ ºÒ°¡ÇÒ »Ó ºä´Â ÀÖÀ½...! ÁøÂ¥ ÀÖÀ½!
--- ¿ÞÂÊ Á¢¼ÓÃ¢ÀÇ KH°èÁ¤ - ºä¿¡¼­ È®ÀÎ °¡´ÉÇÔ
+-- í˜„ìž¬ ì›ë³¸ í…Œì´ë¸”ì´ ì—†ì–´ì„œ ì¡°íšŒ ë¶ˆê°€í•  ë¿ ë·°ëŠ” ìžˆìŒ...! ì§„ì§œ ìžˆìŒ!
+-- ì™¼ìª½ ì ‘ì†ì°½ì˜ KHê³„ì • - ë·°ì—ì„œ í™•ì¸ ê°€ëŠ¥í•¨
 
 CREATE TABLE TT (
     TCODE NUMBER,
@@ -315,28 +315,28 @@ CREATE TABLE TT (
 );
 
 SELECT * FROM VW_TEST;
--- TT Å×ÀÌºíÀ» µÚ´Ê°Ô »ý¼º ÈÄ ´Ù½Ã ÇÑ ¹ø  VW_TEST ºä¸¦ Á¶È¸ÇÏ°Ô µÇ¸é ¿À·ù°¡ ¹ß»ýÇÏÁö ¾ÊÀ½
+-- TT í…Œì´ë¸”ì„ ë’¤ëŠ¦ê²Œ ìƒì„± í›„ ë‹¤ì‹œ í•œ ë²ˆ  VW_TEST ë·°ë¥¼ ì¡°íšŒí•˜ê²Œ ë˜ë©´ ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì§€ ì•ŠìŒ
 
 -- 3) WITH CHECK OPTION
 CREATE OR REPLACE VIEW VW_EMP
 AS (SELECT *
       FROM EMPLOYEE
       WHERE SALARY >= 3000000)
-WITH CHECK OPTION; -- ÀÌ¶§ WHEREÀý Á¶°ÇÀ¸·Î °É¾ú´ø °É °íÁ¤°ªÀ¸·Î °¡Áö°í °¡´Â ´À³¦
+WITH CHECK OPTION; -- ì´ë•Œ WHEREì ˆ ì¡°ê±´ìœ¼ë¡œ ê±¸ì—ˆë˜ ê±¸ ê³ ì •ê°’ìœ¼ë¡œ ê°€ì§€ê³  ê°€ëŠ” ëŠë‚Œ
 
 SELECT * FROM VW_EMP;
--- VW_EMP¶ó´Â ºä¿¡¼­ ÇöÀç ±Þ¿©°¡ 300¸¸¿ø ÀÌ»óÀÎ »ç¿øµéÀÇ Á¤º¸¸¸ º¸¿©Áü
+-- VW_EMPë¼ëŠ” ë·°ì—ì„œ í˜„ìž¬ ê¸‰ì—¬ê°€ 300ë§Œì› ì´ìƒì¸ ì‚¬ì›ë“¤ì˜ ì •ë³´ë§Œ ë³´ì—¬ì§
 
 UPDATE VW_EMP
 SET SALARY = 2000000
 WHERE EMP_ID = 200;
 -- ORA-01402: view WITH CHECK OPTION where-clause violation
--- => ¼­ºêÄõ¸®¿¡ ±â¼úÇÑ Á¶°Ç¿¡ ºÎÇÕÇÏÁö ¾Ê±â ¶§¹®¿¡ °ªÀ» º¯°æ ºÒ°¡
+-- => ì„œë¸Œì¿¼ë¦¬ì— ê¸°ìˆ í•œ ì¡°ê±´ì— ë¶€í•©í•˜ì§€ ì•Šê¸° ë•Œë¬¸ì— ê°’ì„ ë³€ê²½ ë¶ˆê°€
 
 UPDATE VW_EMP
 SET SALARY = 4000000
 WHERE EMP_ID = 200;
--- ¼­ºêÄõ¸® ±â¼úÇÑ Á¶°Ç¿¡ ºÎÇÕÇÏ±â ¶§¹®¿¡ º¯°æ °¡´É
+-- ì„œë¸Œì¿¼ë¦¬ ê¸°ìˆ í•œ ì¡°ê±´ì— ë¶€í•©í•˜ê¸° ë•Œë¬¸ì— ë³€ê²½ ê°€ëŠ¥
 
 SELECT * FROM VW_EMP;
 
@@ -354,5 +354,5 @@ SELECT * FROM VW_EMPBONUS;
 DELETE
 FROM VW_EMPBONUS
 WHERE EMP_ID = 204;
--- SQL ¿À·ù: ORA-42399: cannot perform a DML operation on a read-only view
--- => ÀÐ±â Àü¿ë ¿É¼ÇÀÌ ºÙ¾ú±â ¶§¹®¿¡ ¼öÁ¤ÀÌ ºÒ°¡
+-- SQL ì˜¤ë¥˜: ORA-42399: cannot perform a DML operation on a read-only view
+-- => ì½ê¸° ì „ìš© ì˜µì…˜ì´ ë¶™ì—ˆê¸° ë•Œë¬¸ì— ìˆ˜ì •ì´ ë¶ˆê°€
