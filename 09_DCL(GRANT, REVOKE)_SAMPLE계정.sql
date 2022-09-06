@@ -1,99 +1,99 @@
--- CREATE TABLE ±ÇÇÑ ºÎ¿©¹Þ±â Àü
+-- CREATE TABLE ê¶Œí•œ ë¶€ì—¬ë°›ê¸° ì „
 CREATE TABLE TEST (
     TEST_ID NUMBER
 );
-
--- 3_1. SAMPLE °èÁ¤¿¡ Å×ÀÌºíÀ» »ý¼ºÇÒ ¼ö ÀÖ´Â ±ÇÇÑÀÌ ¾ø±â ¶§¹®¿¡ ¿À·ù ¹ß»ý
+ 
+-- 3_1. SAMPLE ê³„ì •ì— í…Œì´ë¸”ì„ ìƒì„±í•  ìˆ˜ ìžˆëŠ” ê¶Œí•œì´ ì—†ê¸° ë•Œë¬¸ì— ì˜¤ë¥˜ ë°œìƒ
 -- ORA-01031: insufficient privileges
---> ºÒÃæºÐÇÑ ±ÇÇÑµé
+--> ë¶ˆì¶©ë¶„í•œ ê¶Œí•œë“¤
 
--- CREATE TABLE ±ÇÇÑ ºÎ¿©¹ÞÀº ÈÄ
+-- CREATE TABLE ê¶Œí•œ ë¶€ì—¬ë°›ì€ í›„
 CREATE TABLE TEST (
     TEST_ID NUMBER
 );
--- 3_2. TABLE SPACE(Å×ÀÌºíµéÀÌ ¸ð¿© ÀÖ´Â °ø°£)°¡ ÇÒ´çµÇÁö ¾ÊÀ½
+-- 3_2. TABLE SPACE(í…Œì´ë¸”ë“¤ì´ ëª¨ì—¬ ìžˆëŠ” ê³µê°„)ê°€ í• ë‹¹ë˜ì§€ ì•ŠìŒ
 -- ORA-01950: no privileges on tablespace 'SYSTEM'
---> Å×ÀÌºí½ºÆäÀÌ½º°¡ ¾ÆÁ÷ »ç¿ë ºÒ°¡ÀÎ »óÅÂ
+--> í…Œì´ë¸”ìŠ¤íŽ˜ì´ìŠ¤ê°€ ì•„ì§ ì‚¬ìš© ë¶ˆê°€ì¸ ìƒíƒœ
 
--- TEST SPACE ÇÒ´ç¹ÞÀº ÈÄ
+-- TEST SPACE í• ë‹¹ë°›ì€ í›„
 CREATE TABLE TEST (
     TEST_ID NUMBER
 );
--- Å×ÀÌºí »ý¼º ¿Ï·á
+-- í…Œì´ë¸” ìƒì„± ì™„ë£Œ
 
--- À§ÀÇ Å×ÀÌºí »ý¼º ±ÇÇÑ(CREATE TABLE)À» ºÎ¿©¹Þ°Ô µÇ¸é
--- ±âº»ÀûÀ¸·Î´Â ÇØ´ç °èÁ¤ÀÌ ¼ÒÀ¯ÇÏ°í ÀÖ´Â Å×ÀÌºíµéÀ» Á¶ÀÛÇÏ´Â °Íµµ °¡´ÉÇØÁü
+-- ìœ„ì˜ í…Œì´ë¸” ìƒì„± ê¶Œí•œ(CREATE TABLE)ì„ ë¶€ì—¬ë°›ê²Œ ë˜ë©´
+-- ê¸°ë³¸ì ìœ¼ë¡œëŠ” í•´ë‹¹ ê³„ì •ì´ ì†Œìœ í•˜ê³  ìžˆëŠ” í…Œì´ë¸”ë“¤ì„ ì¡°ìž‘í•˜ëŠ” ê²ƒë„ ê°€ëŠ¥í•´ì§
 SELECT * FROM TEST;
 INSERT INTO TEST VALUES(1);
 
--- ºä ¸¸µé¾î º¸±â
+-- ë·° ë§Œë“¤ì–´ ë³´ê¸°
 CREATE VIEW V_TEST
 AS (SELECT *
       FROM TEST);
 -- ORA-01031: insufficient privileges
 
--- 4. ºä °´Ã¼¸¦ »ý¼ºÇÒ ¼ö ÀÖ´Â CREATE VIEW ±ÇÇÑÀÌ ¾ø±â ¶§¹®¿¡ ¿À·ù ¹ß»ý
+-- 4. ë·° ê°ì²´ë¥¼ ìƒì„±í•  ìˆ˜ ìžˆëŠ” CREATE VIEW ê¶Œí•œì´ ì—†ê¸° ë•Œë¬¸ì— ì˜¤ë¥˜ ë°œìƒ
 
--- CREATE VIEW ±ÇÇÑ ºÎ¿©¹ÞÀº ÈÄ
+-- CREATE VIEW ê¶Œí•œ ë¶€ì—¬ë°›ì€ í›„
 CREATE VIEW V_TEST
 AS (SELECT * 
       FROM TEST);
--- ºä »ý¼º ¿Ï·á
+-- ë·° ìƒì„± ì™„ë£Œ
 
 SELECT * FROM V_TEST;
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
--- SAMPLE °èÁ¤¿¡¼­ KH °èÁ¤ÀÇ Å×ÀÌºí¿¡ Á¢±ÙÇØ¼­ Á¶È¸ÇØ º¸±â
+-- SAMPLE ê³„ì •ì—ì„œ KH ê³„ì •ì˜ í…Œì´ë¸”ì— ì ‘ê·¼í•´ì„œ ì¡°íšŒí•´ ë³´ê¸°
 SELECT *
 FROM KH.EMPLOYEE;
 
--- 5. KH °èÁ¤ÀÇ Å×ÀÌºí¿¡ Á¢±ÙÇØ¼­ Á¶È¸ÇÒ ¼ö ÀÖ´Â ±ÇÇÑÀÌ ¾ø±â ¶§¹®¿¡ ¿À·ù ¹ß»ý
+-- 5. KH ê³„ì •ì˜ í…Œì´ë¸”ì— ì ‘ê·¼í•´ì„œ ì¡°íšŒí•  ìˆ˜ ìžˆëŠ” ê¶Œí•œì´ ì—†ê¸° ë•Œë¬¸ì— ì˜¤ë¥˜ ë°œìƒ
 -- ORA-00942: table or view does not exist
 
--- SELECT ON ±ÇÇÑ ºÎ¿©¹ÞÀº ÈÄ
+-- SELECT ON ê¶Œí•œ ë¶€ì—¬ë°›ì€ í›„
 SELECT *
 FROM KH.EMPLOYEE;
--- EMPLOYEE Å×ÀÌºí Á¶È¸ ¼º°ø
+-- EMPLOYEE í…Œì´ë¸” ì¡°íšŒ ì„±ê³µ
 
 SELECT *
 FROM KH.DEPARTMENT;
--- KH °èÁ¤ÀÇ DEPARTMETN Å×ÀÌºí¿¡ Á¢±ÙÇÒ ¼öÀÖ´Â ±ÇÇÑÀÌ ¾ø±â ¶§¹®¿¡ ¿À·ù ¹ß»ý
+-- KH ê³„ì •ì˜ DEPARTMETN í…Œì´ë¸”ì— ì ‘ê·¼í•  ìˆ˜ìžˆëŠ” ê¶Œí•œì´ ì—†ê¸° ë•Œë¬¸ì— ì˜¤ë¥˜ ë°œìƒ
 
--- SAMPLE °èÁ¤¿¡¼­ KH °èÁ¤ÀÇ Å×ÀÌºí¿¡ Á¢±ÙÇØ¼­ Çà »ðÀÔÇØ º¸±â
+-- SAMPLE ê³„ì •ì—ì„œ KH ê³„ì •ì˜ í…Œì´ë¸”ì— ì ‘ê·¼í•´ì„œ í–‰ ì‚½ìž…í•´ ë³´ê¸°
 INSERT INTO KH.DEPARTMENT
-VALUES('D0', 'È¸°èºÎ', 'L2');
+VALUES('D0', 'íšŒê³„ë¶€', 'L2');
 
--- 6. KH°èÁ¤ÀÇ Å×ÀÌºí¿¡ Á¢±ÙÇØ¼­ »ðÀÔÇÒ ¼ö ÀÖ´Â ±ÇÇÑÀÌ ¾ø±â ¶§¹®¿¡ ¿À·ù ¹ß»ý
--- SQL ¿À·ù: ORA-00942: table or view does not exist
+-- 6. KHê³„ì •ì˜ í…Œì´ë¸”ì— ì ‘ê·¼í•´ì„œ ì‚½ìž…í•  ìˆ˜ ìžˆëŠ” ê¶Œí•œì´ ì—†ê¸° ë•Œë¬¸ì— ì˜¤ë¥˜ ë°œìƒ
+-- SQL ì˜¤ë¥˜: ORA-00942: table or view does not exist
 
--- INSERT ON ±ÇÇÑ ºÎ¿©¹ÞÀº ÈÄ
+-- INSERT ON ê¶Œí•œ ë¶€ì—¬ë°›ì€ í›„
 INSERT INTO KH.DEPARTMENT
-VALUES ('D0', 'È¸°èºÎ', 'L2');
--- KH.DEPARTMENT Å×ÀÌºí¿¡ Çà INSERT ¼º°ø
+VALUES ('D0', 'íšŒê³„ë¶€', 'L2');
+-- KH.DEPARTMENT í…Œì´ë¸”ì— í–‰ INSERT ì„±ê³µ
 
 SELECT * FROM KH.DEPARTMENT;
--- INSERT ±ÇÇÑ¸¸ ÁÖ¾úÀ» »Ó SELECT ±ÇÇÑÀº ÁÖÁö ¾Ê¾Ò±â ¶§¹®¿¡ Á¶È¸´Â ºÒ°¡ÇÔ!
+-- INSERT ê¶Œí•œë§Œ ì£¼ì—ˆì„ ë¿ SELECT ê¶Œí•œì€ ì£¼ì§€ ì•Šì•˜ê¸° ë•Œë¬¸ì— ì¡°íšŒëŠ” ë¶ˆê°€í•¨!
 
 
--- ¾ÆÁ÷±îÁö´Â SAMPLE °èÁ¤¿¡¼­ Ãß°¡ÇÑ °ªÀÌ ¹Ý¿µµÇÁö ¾ÊÀ½!
--- INSERT ÈÄ COMMIT±îÁö ÇØ¾ß KH °èÁ¤ÀÇ DEPARTMENT Å×ÀÌºí¿¡ ¹Ý¿µµÊ!
--- SAMPLE°èÁ¤¿¡¼­ ÁøÇàÇßÀ¸´Ï SAMPLE °èÁ¤¿¡¼­ Ä¿¹Ô ÇØ Áà¾ß ÇÔ!
+-- ì•„ì§ê¹Œì§€ëŠ” SAMPLE ê³„ì •ì—ì„œ ì¶”ê°€í•œ ê°’ì´ ë°˜ì˜ë˜ì§€ ì•ŠìŒ!
+-- INSERT í›„ COMMITê¹Œì§€ í•´ì•¼ KH ê³„ì •ì˜ DEPARTMENT í…Œì´ë¸”ì— ë°˜ì˜ë¨!
+-- SAMPLEê³„ì •ì—ì„œ ì§„í–‰í–ˆìœ¼ë‹ˆ SAMPLE ê³„ì •ì—ì„œ ì»¤ë°‹ í•´ ì¤˜ì•¼ í•¨!
 COMMIT;
--- Ä¿¹Ô ÈÄ¿¡´Â »ðÀÔÀÌ ¹Ý¿µµÊ
+-- ì»¤ë°‹ í›„ì—ëŠ” ì‚½ìž…ì´ ë°˜ì˜ë¨
 
--- Å×ÀÌºí ¸¸µé¾î º¸±â
+-- í…Œì´ë¸” ë§Œë“¤ì–´ ë³´ê¸°
 CREATE TABLE TEST2 (
     TEST_ID NUMBER,
     TEST_TITLE VARCHAR2(50)
 );
 
--- 7. SAMPLE °èÁ¤¿¡¼­ Å×ÀÌºíÀ» »ý¼ºÇÒ ¼ö ¾øµµ·Ï ±ÇÇÑÀ» È¸¼öÇß±â ¶§¹®¿¡ ¿À·ù ¹ß»ý
+-- 7. SAMPLE ê³„ì •ì—ì„œ í…Œì´ë¸”ì„ ìƒì„±í•  ìˆ˜ ì—†ë„ë¡ ê¶Œí•œì„ íšŒìˆ˜í–ˆê¸° ë•Œë¬¸ì— ì˜¤ë¥˜ ë°œìƒ
 -- ORA-01031: insufficient privileges
 
 CREATE VIEW V_TEST2
 AS (SELECT *
      FROM TEST
      WHERE 1 = 0);
--- Å×ÀÌºíÀ» ¸¸µå´Â ±ÇÇÑÀ» È¸¼öÇßÀ» »Ó ºä¸¦ ¸¸µå´Â ±ÇÇÑÀº È¸¼öÇÏÁö ¾Ê¾Ò±â ¶§¹®¿¡
--- ºä´Â Àß ¸¸µé¾îÁü
+-- í…Œì´ë¸”ì„ ë§Œë“œëŠ” ê¶Œí•œì„ íšŒìˆ˜í–ˆì„ ë¿ ë·°ë¥¼ ë§Œë“œëŠ” ê¶Œí•œì€ íšŒìˆ˜í•˜ì§€ ì•Šì•˜ê¸° ë•Œë¬¸ì—
+-- ë·°ëŠ” ìž˜ ë§Œë“¤ì–´ì§
